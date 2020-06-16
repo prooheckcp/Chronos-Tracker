@@ -15,6 +15,8 @@ class button1 {
         this.button2;
         this.stroke = false;
         this.textColor = {r: 255, g: 255, b: 255};
+        this.font;
+        this.image;
     };
 
     draw(){
@@ -24,7 +26,17 @@ class button1 {
             this.hovered();
         };
 
-        rect(this.x, this.y, this.w, this.h);
+        if(this.image == undefined){
+            rect(this.x, this.y, this.w, this.h);
+        }else{
+            image(this.image, this.x, this.y, this.w, this.h);
+        };
+
+        noTint();
+
+        if(this.font != undefined){
+            textFont(this.font);
+        };
 
         textSize(this.fontSize);
         textAlign(CENTER, CENTER);

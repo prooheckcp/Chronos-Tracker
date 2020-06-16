@@ -4,14 +4,23 @@
   const UIelements = [];
 
   //Current tab
-    //ID 0 = Home; 
-    let TabID = 0;
+
+    //Home ID
+    let HomeID = 0;
+
+    //About ID
+    let AboutID = 3;
+
+    //The current tab ID
+    let TabID = 3;
 
 
   //Fonts
   let GoodTimesFont;
   let ArialBold;
-
+  let JapaneseFont;
+  let DenseFont;
+  let AntiCoronaFont;
 
 //__________\\
 
@@ -21,11 +30,18 @@ function preload(){
   loadTheImages();
 
   //wont work
+  JapaneseFont = loadFont("project_code/assets/ArigatouGozaimasu-1Gnqg.ttf");
   GoodTimesFont = loadFont("project_code/assets/goodtimesrg.ttf");
   ArialBold = loadFont("project_code/assets/arial-bold.ttf")
+  DenseFont = loadFont("project_code/assets/DenseLetter.ttf");
+  AntiCoronaFont = loadFont("project_code/assets/AntiCorona.ttf");
+
 };
 
 function setup() {
+
+  //Frame
+  frameRate(30);
 
   //Sets the canvas to fullscreen
   createCanvas(windowWidth, windowHeight);
@@ -33,6 +49,8 @@ function setup() {
   //Create the header buttons
   CreateHeaderButtons();
 
+  //Load the about buttons
+  LoadAboutButtons();
 
 };
   
@@ -48,9 +66,15 @@ function draw() {
 
   image(BackgroundImage, 0, 0, windowWidth, windowHeight);
 
-  if(TabID == 0){
+  if(TabID == HomeID){
     DrawTheHome();
-  }
+  }else if(TabID == 1){
+
+  }else if(TabID == 2){
+    
+  }else if(TabID == AboutID){
+    DrawAbout();
+  };
 
   //Draw the main header
   DrawTheMainHeader();
@@ -68,5 +92,12 @@ function mousePressed(clickInfo){
   for(button of UIelements){
     button.click1(clickInfo.buttons);
     button.click2(clickInfo.buttons);
-  }
+  };
+
+  //About window clicking events
+  if(TabID == AboutID){
+
+    AboutClickEvents(clickInfo.buttons);
+  };
+
 };

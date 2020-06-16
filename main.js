@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, globalShortcut} = require('electron');
 
 const path = require('path');
 const url = require('url');
@@ -8,8 +8,31 @@ let win;
 function createWindow(){
 
     //Create browser window
-    win = new BrowserWindow({width: 800, height: 600, icon: path.join(__dirname, "img", "icon.png"), title: 'Chronos Tracker'});
-    //win.removeMenu()
+    win = new BrowserWindow({
+        width: 1000, 
+        height: 600, 
+        icon: path.join(__dirname, "img", "icon.png"), 
+        title: 'Chronos Tracker',
+        minWidth: 1000,
+        minHeight: 600,
+        x: 0,
+        y: 0
+    });
+  
+    
+	globalShortcut.register('CommandOrControl+R', function() {
+
+        win.reload()
+        
+	});
+
+
+
+    globalShortcut.register('CommandOrControl+D', () =>{
+        win.removeMenu();
+    });
+        
+
     //Load index.html
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
@@ -17,8 +40,6 @@ function createWindow(){
         slashes: true
     }));
 
-    //Open devtools
-    //win.webContents().openDevTools();
 
 
     win.on('closed', ()=>{
