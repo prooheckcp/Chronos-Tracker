@@ -1,5 +1,7 @@
 function preload(){
 
+  //Load the images content
+  loadTheImages();
 };
 
 function setup() {
@@ -17,6 +19,8 @@ function windowResized() {
 function draw() {
   //Covers the whole background
   background(220);
+
+  image(BackgroundImage, 0, 0, windowWidth, windowHeight);
 
   //Draw the main header
   DrawTheMainHeader();
