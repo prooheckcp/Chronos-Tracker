@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "prod": "electron-packager . --asar"
+    "prod": "electron-packager ."
   },
   "author": "prooheckcp",
   "license": "ISC",

@@ -8,7 +8,7 @@ let win;
 function createWindow(){
 
     //Create browser window
-    win = new BrowserWindow({width: 800, height: 600, icon: path.join(__dirname, "img", "icon.png")});
+    win = new BrowserWindow({width: 800, height: 600, icon: path.join(__dirname, "img", "icon.png"), title: 'Chronos Tracker'});
     //win.removeMenu()
     //Load index.html
     win.loadURL(url.format({

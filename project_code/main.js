@@ -1,11 +1,28 @@
 //Variables\\
-const UIelements = [];
+
+  //To draw
+  const UIelements = [];
+
+  //Current tab
+    //ID 0 = Home; 
+    let TabID = 0;
+
+
+  //Fonts
+  let GoodTimesFont;
+  let ArialBold;
+
+
 //__________\\
 
 function preload(){
 
   //Load the images content
   loadTheImages();
+
+  //wont work
+  GoodTimesFont = loadFont("project_code/assets/goodtimesrg.ttf");
+  ArialBold = loadFont("project_code/assets/arial-bold.ttf")
 };
 
 function setup() {
@@ -30,6 +47,10 @@ function draw() {
   background(220);
 
   image(BackgroundImage, 0, 0, windowWidth, windowHeight);
+
+  if(TabID == 0){
+    DrawTheHome();
+  }
 
   //Draw the main header
   DrawTheMainHeader();
