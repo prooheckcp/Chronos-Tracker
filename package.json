@@ -1,0 +1,16 @@
+{
+  "name": "electron_withp5_template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "prod": "electron-packager . --asar"
+  },
+  "author": "prooheckcp",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^9.0.4",
+    "electron-packager": "^14.2.1"
+  }
+}
