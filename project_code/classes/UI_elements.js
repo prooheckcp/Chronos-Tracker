@@ -8,13 +8,17 @@ class button1 {
         this.h = h;
         this.text = "";
         this.fontSize = 16;
+        this.transparency = 0;
+        this.color = {r: 0, g: 0, b: 0};
         this.hovered;
         this.button1;
         this.button2;
+        this.stroke = false;
+        this.textColor = {r: 255, g: 255, b: 255};
     };
 
     draw(){
-        fill(200);
+        fill(this.color.r, this.color.g, this.color.b, this.transparency);
 
         if(typeof(this.hovered) == typeof(()=>{}) && CheckIfMouseInRect(this, mouseX, mouseY)){
             this.hovered();
@@ -24,7 +28,13 @@ class button1 {
 
         textSize(this.fontSize);
         textAlign(CENTER, CENTER);
-        BetterText(this.text, this.x + this.w/2, this.y+ this.h/2);
+
+        if(this.stroke){
+            BetterText(this.text, this.x + this.w/2, this.y+ this.h/2);
+        }else{
+            fill(this.textColor.r, this.textColor.g, this.textColor.b);
+            text(this.text, this.x + this.w/2, this.y+ this.h/2);
+        };
     };
 
     addHovering(func){
@@ -40,9 +50,9 @@ class button1 {
     eventClick1(func){
 
         if(typeof(func) == typeof(()=>{})){
-            this.click1 = func;
+            this.button1 = func;
         }else{
-            this.click1 = undefined;
+            this.button1 = undefined;
         };
 
     };
@@ -50,9 +60,9 @@ class button1 {
     eventClick2(func){
 
         if(typeof(func) == typeof(()=>{})){
-            this.click2 = func;
+            this.button2 = func;
         }else{
-            this.click2 = undefined;
+            this.button2 = undefined;
         };
 
     };
@@ -70,11 +80,13 @@ class button1 {
 
     click2(buttonused){
 
+        
         if(typeof(this.button2) != typeof(()=>{})){
             return;
         };
 
         if(CheckIfMouseInRect(this, mouseX, mouseY) && buttonused == 2){
+            
             this.button2();
         };
     };

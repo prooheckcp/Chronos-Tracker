@@ -27,6 +27,6 @@ const SetTheHeaderSettings = () =>{
     headerSettings.x = 0;
     headerSettings.y = 0;
     headerSettings.width = windowWidth;
-    headerSettings.height = 75;
+    headerSettings.height = 65;
 
 };
