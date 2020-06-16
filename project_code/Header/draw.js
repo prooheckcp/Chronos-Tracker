@@ -14,7 +14,8 @@ const DrawTheMainHeader = () => {
     SetTheHeaderSettings();
 
     //The header color
-    fill(0, 50);
+    fill(0, 175);
+    noStroke();
 
     //HeaderBackground
     rect(headerSettings.x, headerSettings.y, headerSettings.width, headerSettings.height);
