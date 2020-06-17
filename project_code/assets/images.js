@@ -10,6 +10,10 @@
     //logos
     let gitHubLogo;
     let LinkedInLogo;
+
+    //Shapes
+    let CircleButton;
+
 //_________________\\
 
 const loadTheImages = () => {
@@ -22,4 +26,8 @@ const loadTheImages = () => {
 
     //Linkedin logo
     LinkedInLogo = loadImage("project_code/assets/LinkedIn.png");
+
+    //Shapes
+    CircleButton = loadImage("project_code/assets/Circle.png");
+
 };

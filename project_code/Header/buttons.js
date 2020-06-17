@@ -39,13 +39,12 @@ const CreateHeaderButtons = () =>{
     //Timers list\\
 
         ListButton = NewButton(400, 0, 200, 65);
-        ListButton.text = 'Timers';
+        ListButton.text = 'List';
         ListButton.fontSize = 40;
         ListButton.addHovering(()=>{
             fill(100, 100);
         });    
         ListButton.eventClick1(()=>{
-            //window.open("https://www.google.com/");
             TabID = 2;
         }); 
         ListButton.font = AntiCoronaFont;

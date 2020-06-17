@@ -11,6 +11,7 @@ const LoadAboutButtons = () =>{
 
         GitHubButton = new button1(0, 0, 75, 75);
         GitHubButton.image = gitHubLogo;
+        GitHubButton.transparency = 255;
         GitHubButton.eventClick1(()=>{
             window.open('https://github.com/prooheckcp/Chronos-Tracker');
         });
@@ -26,6 +27,7 @@ const LoadAboutButtons = () =>{
 
         LinkedInButton = new button1(0, 0, 85, 75);
         LinkedInButton.image = LinkedInLogo;
+        LinkedInButton.transparency = 255;
         LinkedInButton.eventClick1(()=>{
             window.open('https://www.linkedin.com/in/miguel-soares-564682194/');
         });

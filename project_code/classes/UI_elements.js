@@ -9,7 +9,7 @@ class button1 {
         this.text = "";
         this.fontSize = 16;
         this.transparency = 0;
-        this.color = {r: 0, g: 0, b: 0};
+        this.color = {r: 255, g: 255, b: 255};
         this.hovered;
         this.button1;
         this.button2;
@@ -21,6 +21,7 @@ class button1 {
 
     draw(){
         fill(this.color.r, this.color.g, this.color.b, this.transparency);
+        tint(this.color.r, this.color.g, this.color.b, this.transparency);
 
         if(typeof(this.hovered) == typeof(()=>{}) && CheckIfMouseInRect(this, mouseX, mouseY)){
             this.hovered();
@@ -81,11 +82,15 @@ class button1 {
 
     click1(buttonused){
 
+        
+
         if(typeof(this.button1) != typeof(()=>{})){
             return;
         };
 
         if(CheckIfMouseInRect(this, mouseX, mouseY) && buttonused == 1){
+
+            
             this.button1();
         };
     };

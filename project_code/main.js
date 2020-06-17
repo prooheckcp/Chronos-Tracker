@@ -55,6 +55,9 @@ function setup() {
   //Load the about buttons
   LoadAboutButtons();
 
+  //Timer Buttons
+  CreateTimerButtons();
+
 };
   
 function windowResized() {
@@ -110,6 +113,12 @@ function mousePressed(clickInfo){
   if(TabID == AboutID){
 
     AboutClickEvents(clickInfo.buttons);
+  };
+
+  //Timer window clicking events
+  if(TabID == TimerID){
+
+    TimerClickEvents(clickInfo.buttons);
   };
 
 };
