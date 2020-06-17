@@ -9,6 +9,7 @@
 
     //logos
     let gitHubLogo;
+    let LinkedInLogo;
 //_________________\\
 
 const loadTheImages = () => {
@@ -18,4 +19,7 @@ const loadTheImages = () => {
 
     //GitHub logo
     gitHubLogo = loadImage("project_code/assets/github.png");
+
+    //Linkedin logo
+    LinkedInLogo = loadImage("project_code/assets/LinkedIn.png");
 };

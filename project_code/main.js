@@ -8,11 +8,14 @@
     //Home ID
     let HomeID = 0;
 
+    //Timer ID
+    let TimerID = 1;
+
     //About ID
     let AboutID = 3;
 
     //The current tab ID
-    let TabID = 3;
+    let TabID = 1;
 
 
   //Fonts
@@ -29,7 +32,7 @@ function preload(){
   //Load the images content
   loadTheImages();
 
-  //wont work
+  //Load the fonts
   JapaneseFont = loadFont("project_code/assets/ArigatouGozaimasu-1Gnqg.ttf");
   GoodTimesFont = loadFont("project_code/assets/goodtimesrg.ttf");
   ArialBold = loadFont("project_code/assets/arial-bold.ttf")
@@ -66,14 +69,23 @@ function draw() {
 
   image(BackgroundImage, 0, 0, windowWidth, windowHeight);
 
+  //Count the timer time
+  CountTime();
+
+  //Choose the tab to be counted
   if(TabID == HomeID){
     DrawTheHome();
-  }else if(TabID == 1){
-
+  }else if(TabID == TimerID){
+    DrawDefaultTimer();
   }else if(TabID == 2){
     
   }else if(TabID == AboutID){
     DrawAbout();
+  };
+
+  //Remove the input boxes
+  if(TabID != TimerID){
+    RemoveTimerInputs();
   };
 
   //Draw the main header

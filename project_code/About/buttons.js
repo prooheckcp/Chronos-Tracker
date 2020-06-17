@@ -1,6 +1,7 @@
 //Variables\\
 
     let GitHubButton;
+    let LinkedInButton;
 
 //----------\\
 
@@ -20,7 +21,21 @@ const LoadAboutButtons = () =>{
             GitHubButton.h += 10;
         });
     //-------------\\
+    
+    //LinkedIn Logo\\
 
+        LinkedInButton = new button1(0, 0, 85, 75);
+        LinkedInButton.image = LinkedInLogo;
+        LinkedInButton.eventClick1(()=>{
+            window.open('https://www.linkedin.com/in/miguel-soares-564682194/');
+        });
+        LinkedInButton.addHovering(()=>{
+            LinkedInButton.x -= 5;
+            LinkedInButton.y -= 5;
+            LinkedInButton.w += 10;
+            LinkedInButton.h += 10;
+        });      
+    //--------------\\
 
 };
 
@@ -29,4 +44,6 @@ const AboutClickEvents = (info) =>{
     //Github logo
     GitHubButton.click1(info);
 
+    //linkedin logo
+    LinkedInButton.click1(info);
 };
