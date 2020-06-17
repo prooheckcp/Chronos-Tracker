@@ -24,11 +24,7 @@ const DrawDefaultTimer = () =>{
         SecondsINP = AddTimerInputs(windowWidth/2 + 10, 200);
         MilliSecondsINP = AddTimerInputs(windowWidth/2 + 130, 200);
         MinutesINP = AddTimerInputs(windowWidth/2 - 110, 200);
-        HoursINP = AddTimerInputs(windowWidth/2 - 330, 200, 'y');
-
-        SecondsINP.input(()=>{
-            print(this.value());
-        });
+        HoursINP = AddTimerInputs(windowWidth/2 - 330, 200, 'y');        
 
         UpdateTimerValues();
     }else{
@@ -98,6 +94,7 @@ const AddTimerInputs = (x, y, response) =>{
     InpVar.style('text-align', 'center');
     InpVar.style('color', '#ffffff');
     InpVar.style('font-weight', 'bold');
+    InpVar.input(UpdateTimerNumbersINP);
 
     if(response == 'y'){
         InpVar.style('text-align', 'right');
@@ -175,4 +172,23 @@ const UpdateTimerValues = () =>{
         }else{
             HoursINP.elt.value = LocalHours;
         };
+};
+
+
+function UpdateTimerNumbersINP(){
+    if(!(isNaN(Number(this.value())))){
+        
+        //Equation here
+        let LocalH = Number(HoursINP.elt.value);
+        let LocalM = Number(MinutesINP.elt.value);
+        let LocalS = Number(SecondsINP.elt.value);
+        let LocalMS = Number(MilliSecondsINP.elt.value);
+        let CalculateAmount = LocalH * 3600 + LocalM * 60 + LocalS +  (LocalMS/100);
+        if(CalculateAmount != TimerCount){
+            TimerCount = Number(CalculateAmount);
+            UpdateTimerValues();
+        };
+    }else{
+        UpdateTimerValues();
+    };
 };
