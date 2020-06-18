@@ -1,5 +1,8 @@
 # Chronos Tracker
 
+![alt text](https://cdn.discordapp.com/attachments/236953641624272896/723219083788681227/icon.png)
+
+
 Chronos Tracker is a simple windows desktop app developed by prooheckcp.
 It is used to keep track on long have you spent over the time with a certain task.
 
