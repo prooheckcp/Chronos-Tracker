@@ -11,11 +11,14 @@
     //Timer ID
     let TimerID = 1;
 
+    //List ID
+    let ListID = 2;
+
     //About ID
     let AboutID = 3;
 
     //The current tab ID
-    let TabID = 1;
+    let TabID = 2;
 
 
   //Fonts
@@ -58,6 +61,9 @@ function setup() {
   //Timer Buttons
   CreateTimerButtons();
 
+  //Timers list buttons
+  LoadListButtons();
+
 };
   
 function windowResized() {
@@ -80,8 +86,8 @@ function draw() {
     DrawTheHome();
   }else if(TabID == TimerID){
     DrawDefaultTimer();
-  }else if(TabID == 2){
-    
+  }else if(TabID == ListID){
+    DrawTimerList();
   }else if(TabID == AboutID){
     DrawAbout();
   };
@@ -89,6 +95,11 @@ function draw() {
   //Remove the input boxes
   if(TabID != TimerID){
     RemoveTimerInputs();
+  };
+
+  //Draw the add timer window
+  if(NewTimerWindowStatus){
+    DrawNewTimerWindow();
   };
 
   //Draw the main header
@@ -110,15 +121,19 @@ function mousePressed(clickInfo){
   };
 
   //About window clicking events
-  if(TabID == AboutID){
+  if(TabID == AboutID && !NewTimerWindowStatus){
 
     AboutClickEvents(clickInfo.buttons);
   };
 
   //Timer window clicking events
-  if(TabID == TimerID){
+  if(TabID == TimerID && !NewTimerWindowStatus){
 
     TimerClickEvents(clickInfo.buttons);
+  };
+
+  if(TabID == ListID && !NewTimerWindowStatus){
+    PressedTimerList(clickInfo.buttons);
   };
 
 };
