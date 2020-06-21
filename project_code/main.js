@@ -64,6 +64,9 @@ function setup() {
   //Timers list buttons
   LoadListButtons();
 
+  //New timer window buttons
+  LoadNewTimerButtons();
+
 };
   
 function windowResized() {
@@ -86,7 +89,7 @@ function draw() {
     DrawTheHome();
   }else if(TabID == TimerID){
     DrawDefaultTimer();
-  }else if(TabID == ListID){
+  }else if(TabID == ListID && !NewTimerWindowStatus){
     DrawTimerList();
   }else if(TabID == AboutID){
     DrawAbout();
@@ -115,9 +118,16 @@ function draw() {
 function mousePressed(clickInfo){
 
   //for the UI elements
-  for(button of UIelements){
-    button.click1(clickInfo.buttons);
-    button.click2(clickInfo.buttons);
+  if(!NewTimerWindowStatus){
+
+    for(button of UIelements){
+      button.click1(clickInfo.buttons);
+      button.click2(clickInfo.buttons);
+    };
+  };
+
+  if(NewTimerWindowStatus){
+    NewTimerWindowStatus(clickInfo.buttons);
   };
 
   //About window clicking events
