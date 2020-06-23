@@ -95,6 +95,19 @@ function draw() {
     DrawAbout();
   };
 
+  //Clean the new timer inputs
+  if(!NewTimerWindowStatus && UploadImageButton != undefined){
+
+    UploadNameInput.remove();
+    UploadNameInput = undefined;
+
+    UploadDescriptionInput.remove();
+    UploadDescriptionInput = undefined;
+
+    UploadImageButton.remove();
+    UploadImageButton = undefined;
+  }
+
   //Remove the input boxes
   if(TabID != TimerID){
     RemoveTimerInputs();
@@ -127,7 +140,7 @@ function mousePressed(clickInfo){
   };
 
   if(NewTimerWindowStatus){
-    NewTimerWindowStatus(clickInfo.buttons);
+    NewTimerClicked(clickInfo.buttons);
   };
 
   //About window clicking events
