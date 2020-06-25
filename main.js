@@ -1,9 +1,19 @@
-const {app, BrowserWindow, globalShortcut} = require('electron');
-
+const {app, BrowserWindow, globalShortcut, ipcMain, ipcRenderer} = require('electron');
 const path = require('path');
 const url = require('url');
+const http = require('http');
+const fs = require('fs');
+
+const jsonInfo = require('./project_code/jsonServices/functions');
+const { stringify } = require('querystring');
 
 let win;
+
+
+
+
+
+
 
 function createWindow(){
 
@@ -18,8 +28,8 @@ function createWindow(){
         x: 0,
         y: 0
     });
-  
     
+
 	globalShortcut.register('CommandOrControl+R', function() {
 
         win.reload()
@@ -41,7 +51,6 @@ function createWindow(){
     }));
 
 
-
     win.on('closed', ()=>{
         win = null;
     });
@@ -56,4 +65,17 @@ app.on('window-all-closed', ()=>{
         app.quit();
     }
 });
+
+
+
+setTimeout(() => {
+
+    jsonInfo.load('test');
+
+
+
+}, 1000);
+
+
+
 

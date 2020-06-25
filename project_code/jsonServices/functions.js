@@ -1,11 +1,48 @@
-let fs = require('fs');
+//To be saved data\\
 
-const CreateAnewTimerJSON = () =>{
+    let TimersArray = [{name: 'hi'}];
+//_________________\\
 
-    let test = fs.readFile('./');
 
-    print(test);
+const CreateAnewTimerJSON = (name, description, image) =>{
 
-    print('created a new timer')
+    //Timer format
+    let LocalObject = {
+        timepassed: 0,
+        name: name,
+        desc: description,
+        img: image
+
+    }; 
+
+
+    //Send to the array
+    TimersArray.push(LocalObject);
+
+
+    let xixi = loadJSON('Databases/timers.json', result =>{
+        print(result);
+    });
+    print(xixi)
+
+
+    //let LocalTest= new p5.File('./../../Databases/timers.json');
+    //print(LocalTest);
+
+};
+
+
+function GettingArrayInfo(){
+    console.log(TimersArray);
+    return TimersArray;
+};
+
+module.exports = {
+
+    save: GettingArrayInfo,
+
+    load: data =>{
+        console.log(data);
+    }
 
 };

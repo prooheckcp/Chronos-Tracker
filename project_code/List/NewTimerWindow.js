@@ -68,7 +68,11 @@ const LoadNewTimerButtons = () =>{
         fill(108, 232, 51);
     });
     CreateTimerButton.eventClick1(()=>{
-        CreateAnewTimerJSON();
+
+        //Tell the app to store the timer
+        CreateAnewTimerJSON(NameToBeUploaded, DescriptionToBeUploaded, ImageToBeUploaded);
+
+        //Close the timer window
         NewTimerWindowStatus = false;
     });
 
