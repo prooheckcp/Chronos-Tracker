@@ -1,10 +1,16 @@
+//Variables\\
+
+    const {ipcRenderer} = require('electron');
+//__________\\
+
 //To be saved data\\
 
-    let TimersArray = [{name: 'hi'}];
+
+    let TimersArray = [];
 //_________________\\
 
 
-const CreateAnewTimerJSON = (name, description, image) =>{
+const CreateAnewTimerJSON = (name, description, image, imagepath) =>{
 
     //Timer format
     let LocalObject = {
@@ -12,37 +18,23 @@ const CreateAnewTimerJSON = (name, description, image) =>{
         name: name,
         desc: description,
         img: image
-
     }; 
 
+    print(LocalObject.img)
+    
 
     //Send to the array
     TimersArray.push(LocalObject);
 
-
-    let xixi = loadJSON('Databases/timers.json', result =>{
-        print(result);
-    });
-    print(xixi)
-
-
-    //let LocalTest= new p5.File('./../../Databases/timers.json');
-    //print(LocalTest);
+    //Save on the backend
+    //SaveTimersBackEnd();
 
 };
 
 
-function GettingArrayInfo(){
-    console.log(TimersArray);
-    return TimersArray;
-};
+const SaveTimersBackEnd = () =>{
 
-module.exports = {
-
-    save: GettingArrayInfo,
-
-    load: data =>{
-        console.log(data);
-    }
+     //Send info to back-end
+    ipcRenderer.send('request-mainprocess-save', TimersArray);   
 
 };

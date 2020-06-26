@@ -26,6 +26,9 @@
     //Image to be received
     let ImageToBeUploaded;
 
+    //Image path
+    let ImageToBeUploadedPath;
+
     //Name to be received
     let NameToBeUploaded;
 
@@ -70,7 +73,7 @@ const LoadNewTimerButtons = () =>{
     CreateTimerButton.eventClick1(()=>{
 
         //Tell the app to store the timer
-        CreateAnewTimerJSON(NameToBeUploaded, DescriptionToBeUploaded, ImageToBeUploaded);
+        CreateAnewTimerJSON(NameToBeUploaded, DescriptionToBeUploaded, ImageToBeUploaded, ImageToBeUploadedPath);
 
         //Close the timer window
         NewTimerWindowStatus = false;
@@ -104,8 +107,12 @@ const DrawNewTimerWindow = () =>{
 
             if(file.type === 'image'){
 
+                
                 ImageToBeUploaded = createImg(file.data, '');   
                 ImageToBeUploaded.hide();
+
+                ImageToBeUploadedPath = file.file.path;
+
             };
 
         });
