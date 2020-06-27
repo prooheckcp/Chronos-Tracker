@@ -28,6 +28,11 @@
   let DenseFont;
   let AntiCoronaFont;
 
+
+  //Assets
+  let TimerBackgroundImage;
+  let TimerImagePortrait;
+  let NoImageReplacer;
 //__________\\
 
 function preload(){
@@ -43,6 +48,7 @@ function preload(){
   AntiCoronaFont = loadFont("project_code/assets/AntiCorona.ttf");
 
 };
+
 
 function setup() {
 
@@ -67,6 +73,12 @@ function setup() {
   //New timer window buttons
   LoadNewTimerButtons();
 
+  //Load the timers data
+  LoadTimerData();
+
+  TimerBackgroundImage = loadImage(__dirname + '/project_code/assets/Panel_Dialogue.png');
+  TimerImagePortrait = loadImage(__dirname + '/project_code/assets/Portrait_Player_Border_Grey.png')
+  NoImageReplacer = loadImage(__dirname + '/project_code/assets/noimage.jpg');
 };
   
 function windowResized() {

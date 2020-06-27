@@ -12,6 +12,7 @@
   "dependencies": {
     "electron": "^9.0.4",
     "electron-packager": "^14.2.1",
-    "file-system": "^2.2.2"
+    "file-system": "^2.2.2",
+    "fs-extra": "^9.0.1"
   }
 }

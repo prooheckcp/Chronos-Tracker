@@ -1,7 +1,7 @@
 //Variables\\
     
     //WindowsStatus
-    let NewTimerWindowStatus = true;
+    let NewTimerWindowStatus = false;
 
     //Window configurations
     let NewTimerWindowConfig = {
@@ -28,6 +28,9 @@
 
     //Image path
     let ImageToBeUploadedPath;
+
+    //Image name
+    let ImageToBeUploadedName;
 
     //Name to be received
     let NameToBeUploaded;
@@ -57,6 +60,14 @@ const LoadNewTimerButtons = () =>{
     });
     NewTimerWindowClose.eventClick1(()=>{
         NewTimerWindowStatus = false;
+
+        //Clean variables
+        ImageToBeUploadedName = undefined;
+        NameToBeUploaded = undefined;
+        DescriptionToBeUploaded = undefined;
+        ImageToBeUploaded = undefined;
+        ImageToBeUploadedPath = undefined;
+
     });
 
     //Create timer
@@ -73,7 +84,7 @@ const LoadNewTimerButtons = () =>{
     CreateTimerButton.eventClick1(()=>{
 
         //Tell the app to store the timer
-        CreateAnewTimerJSON(NameToBeUploaded, DescriptionToBeUploaded, ImageToBeUploaded, ImageToBeUploadedPath);
+        CreateAnewTimerJSON(NameToBeUploaded, DescriptionToBeUploaded, ImageToBeUploadedName, ImageToBeUploadedPath);
 
         //Close the timer window
         NewTimerWindowStatus = false;
@@ -107,12 +118,11 @@ const DrawNewTimerWindow = () =>{
 
             if(file.type === 'image'){
 
-                
                 ImageToBeUploaded = createImg(file.data, '');   
                 ImageToBeUploaded.hide();
 
                 ImageToBeUploadedPath = file.file.path;
-
+                ImageToBeUploadedName = file.file.name;
             };
 
         });
