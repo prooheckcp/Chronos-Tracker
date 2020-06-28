@@ -34,6 +34,8 @@
   let TimerImagePortrait;
   let NoImageReplacer;
   let TimerNameImage;
+  let GreenButtonImage;
+  let YellowButtonImage;
 //__________\\
 
 function preload(){
@@ -77,11 +79,9 @@ function setup() {
   //Load the timers data
   LoadTimerData();
 
-  //Load the images
-  TimerBackgroundImage = loadImage(__dirname + '/project_code/assets/Panel_Dialogue.png');
-  TimerImagePortrait = loadImage(__dirname + '/project_code/assets/Portrait_Player_Border_Grey.png')
-  NoImageReplacer = loadImage(__dirname + '/project_code/assets/noimage.jpg');
-  TimerNameImage = loadImage(__dirname + '/project_code/assets/Panel_Name.png');
+
+  setInterval( SaveTimersBackEnd, 5000);
+
 };
   
 function windowResized() {

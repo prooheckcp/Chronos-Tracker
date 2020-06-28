@@ -100,7 +100,7 @@ const SaveTimersBackEnd = () =>{
     
     //Get the reply
     ipcRenderer.on('save-reply', (event, arg) =>{
-        print(arg);
+        
     }); 
 
 };
