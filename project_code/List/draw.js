@@ -36,6 +36,13 @@ async function DrawTimerList(){
     NextPageList.y = TimerListSizes.y + TimerListSizes.h - 65;
     NextPageList.w = 65;
     NextPageList.h = 65;
+
+    if(!(TimerListPage * 4 < TimersArray.length)){ 
+        NextPageList.color = {r: 155, g: 155, b: 155};
+    }else{
+        NextPageList.color = {r: 255, g: 255, b: 255};
+    };
+
     NextPageList.draw();
 
     //Draw the previous page button
@@ -43,14 +50,24 @@ async function DrawTimerList(){
     LastPageList.y = TimerListSizes.y + TimerListSizes.h - 65;
     LastPageList.w = 65;
     LastPageList.h = 65;
+
+    if(!(TimerListPage > 1)){
+        LastPageList.color = {r: 155, g: 155, b: 155};
+    }else{
+        LastPageList.color = {r: 255, g: 255, b: 255};
+    };    
+
+    
+
     LastPageList.draw();
+
 
 
     //Draw the timer
     for(let i = (TimerListPage * 4) - 4; i < (TimerListPage * 4); i++){
 
         let j = i - (TimerListPage * 4) + 4;
-        DrawTimerListTab(i, j)
+        DrawTimerListTab(i, j);
 
     };
 

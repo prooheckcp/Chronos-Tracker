@@ -53,7 +53,11 @@ const LoadListButtons = () =>{
             tint(144, 145, 0);   
         });
         NextPageList.eventClick1(()=>{
-            TimerListPage++;
+
+            if(TimerListPage * 4 < TimersArray.length){ 
+                TimerListPage++;
+            };
+
         });   
     //_______________________\\
 
@@ -76,7 +80,10 @@ const LoadListButtons = () =>{
         tint(144, 145, 0);   
     });
     LastPageList.eventClick1(()=>{
-        TimerListPage--;
+
+        if(TimerListPage > 1){
+            TimerListPage--;
+        };
     });   
 //_______________________\\
 
@@ -89,5 +96,14 @@ const PressedTimerList = (info) => {
     AddANewTimer.click1(info);
     NextPageList.click1(info);
     LastPageList.click1(info);
+
+    for(let i = (TimerListPage * 4) - 4; i < (TimerListPage * 4); i++){
+
+        let j = i - (TimerListPage * 4) + 4;
+
+        if(CheckIfMouseInRect( {x: TimerListSizes.x, y: TimerListSizes.y + (j * 100), w: 800, h: 100}, mouseX, mouseY)){
+
+        };
+    };
 
 };
