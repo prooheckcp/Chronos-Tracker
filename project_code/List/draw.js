@@ -24,6 +24,13 @@ async function DrawTimerList(){
     fill(0, 50);
     rect(TimerListSizes.x, TimerListSizes.y, TimerListSizes.w, TimerListSizes.h);
 
+    //Page number
+    textFont(ArialBold);
+    textSize(24);
+    textAlign(CENTER, TOP);
+    fill(255);
+    text(TimerListPage + '/' + (1 + Math.floor(TimersArray.length/4.001)), TimerListSizes.x + TimerListSizes.w/2, TimerListSizes.y + TimerListSizes.h + 2);
+
     //Draw the add button
     AddANewTimer.x = TimerListSizes.x - 65 - 10;
     AddANewTimer.y = TimerListSizes.y + TimerListSizes.h - 140;

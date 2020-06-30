@@ -79,6 +79,8 @@ function setup() {
   //Load the timers data
   LoadTimerData();
 
+  //Load the manage timer buttons
+  SetupManageTimerButtons();
 
   setInterval( SaveTimersBackEnd, 5000);
 
@@ -104,7 +106,7 @@ function draw() {
     DrawTheHome();
   }else if(TabID == TimerID){
     DrawDefaultTimer();
-  }else if(TabID == ListID && !NewTimerWindowStatus){
+  }else if(TabID == ListID && !NewTimerWindowStatus && !ShowManageTimerWindow){
     DrawTimerList();
   }else if(TabID == AboutID){
     DrawAbout();
@@ -130,7 +132,16 @@ function draw() {
 
   //Draw the add timer window
   if(NewTimerWindowStatus){
+
     DrawNewTimerWindow();
+  };  
+
+  //Drawa the timer management window
+  if(ShowManageTimerWindow){
+
+    DrawManageTimer();
+  }else{
+    ManageTimerDeleteInputs();
   };
 
   //Draw the main header
@@ -145,8 +156,22 @@ function draw() {
 
 function mousePressed(clickInfo){
 
+
+
+  //Clicking event on the timer list
+  if(TabID == ListID && !NewTimerWindowStatus && !ShowManageTimerWindow){
+    PressedTimerList(clickInfo.buttons);
+  };
+
+
+  //Timer window clicking events
+  if(TabID == TimerID && !NewTimerWindowStatus){
+
+    TimerClickEvents(clickInfo.buttons);
+  };
+
   //for the UI elements
-  if(!NewTimerWindowStatus){
+  if(!NewTimerWindowStatus && !ShowManageTimerWindow){
 
     for(button of UIelements){
       button.click1(clickInfo.buttons);
@@ -164,14 +189,11 @@ function mousePressed(clickInfo){
     AboutClickEvents(clickInfo.buttons);
   };
 
-  //Timer window clicking events
-  if(TabID == TimerID && !NewTimerWindowStatus){
-
-    TimerClickEvents(clickInfo.buttons);
+  //Clickin on timer manager window
+  if(TabID == ListID && ShowManageTimerWindow){
+    ManageTimerClick(clickInfo.buttons);
   };
 
-  if(TabID == ListID && !NewTimerWindowStatus){
-    PressedTimerList(clickInfo.buttons);
-  };
+
 
 };

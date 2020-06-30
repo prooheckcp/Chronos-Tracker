@@ -99,9 +99,22 @@ const PressedTimerList = (info) => {
 
     for(let i = (TimerListPage * 4) - 4; i < (TimerListPage * 4); i++){
 
+
+        //Check if the panel exists
+        if(TimersArray[i] == undefined || ShowManageTimerWindow || NewTimerWindowStatus){
+            return;
+        };
+
+
+        //Get the panel position
         let j = i - (TimerListPage * 4) + 4;
 
+        //Check if the mouse is within the panels position
         if(CheckIfMouseInRect( {x: TimerListSizes.x, y: TimerListSizes.y + (j * 100), w: 800, h: 100}, mouseX, mouseY)){
+            
+            //Open the timers window
+            ShowManageTimerWindow = true;
+            ManagedTimerOBJ = i;
 
         };
     };
