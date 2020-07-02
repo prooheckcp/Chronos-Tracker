@@ -81,6 +81,7 @@ const CountTime = () =>{
 
 };
 
+//Create the main timer inputs
 const AddTimerInputs = (x, y, response) =>{
 
     let InpVar;
@@ -95,6 +96,31 @@ const AddTimerInputs = (x, y, response) =>{
     InpVar.style('color', '#ffffff');
     InpVar.style('font-weight', 'bold');
     InpVar.input(UpdateTimerNumbersINP);
+
+    if(response == 'y'){
+        InpVar.style('text-align', 'right');
+        InpVar.size(200, 100);
+    };
+
+    return InpVar;
+
+};
+
+//Create the custom timers input
+const AddCustomTimerInputs = (x, y, response) =>{
+
+    let InpVar;
+    InpVar = createInput('00');
+    InpVar.size(100, 100);
+    InpVar.position(x, y);
+    InpVar.style('background-color', 'black');
+    InpVar.style('background', 'transparent');
+    InpVar.style('border', 'none');
+    InpVar.style('font-size', '80px');
+    InpVar.style('text-align', 'center');
+    InpVar.style('color', '#ffffff');
+    InpVar.style('font-weight', 'bold');
+    InpVar.input(UpdateCustomTimerNumbersINP);
 
     if(response == 'y'){
         InpVar.style('text-align', 'right');
@@ -193,4 +219,24 @@ function UpdateTimerNumbersINP(){
     };
 };
 
+//Update the timer values of the timer
+function UpdateCustomTimerNumbersINP(){
+    if(!(isNaN(Number(this.value())))){
+        
+        //Equation here
+        let CalculateAmount = ManageTimerH.elt.value * 3600 + ManageTimerM.elt.value * 60 + ManageTimerS.elt.value +  (ManageTimerMS.elt.value/100);
+        if(CalculateAmount != TimerCount){
+            TimersArray[ManagedTimerOBJ].timepassed = Number(CalculateAmount);
+            UpdateCustomTimerValues();
+        };
+    }else{
+        UpdateCustomTimerValues();
+    };
+};
+
+
+//To do
+const UpdateCustomTimerValues = () =>{
+
+};
 

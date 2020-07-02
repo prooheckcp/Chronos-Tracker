@@ -9,6 +9,18 @@
     //Timer description Input
     let ManageTimerDesc;
 
+    //Timer milliseconds input
+    let ManageTimerMS;
+
+    //Timer seconds input
+    let ManageTimerS;
+
+    //Timer minutes input
+    let ManageTimerM;
+
+    //Timer hours input
+    let ManageTimerH;
+
 //__________\\
 
 const SetupManageTimerButtons = () =>{
@@ -70,6 +82,28 @@ const ManageTimerInputs = () =>{
         ManageTimerDesc.style('font-weight', 'bold');
     };
 
+    //Create the timer milliseconds
+    if(ManageTimerMS == undefined){
+
+        ManageTimerMS = AddCustomTimerInputs();
+
+    };
+
+    //Create the timer seconds
+    if(ManageTimerS == undefined){
+        ManageTimerS = AddCustomTimerInputs();
+    };
+
+    //Create the timer minutes
+    if(ManageTimerM == undefined){
+        ManageTimerM = AddCustomTimerInputs();
+    };
+
+    //Create the timer hours
+    if(ManageTimerH == undefined){
+        ManageTimerH = AddCustomTimerInputs();
+    };
+
 };
 
 const ManageTimerDeleteInputs = () =>{
@@ -84,10 +118,35 @@ const ManageTimerDeleteInputs = () =>{
     //Destroy the timer description input 
     if(ManageTimerDesc != undefined){
 
-
         ManageTimerDesc.remove();
         ManageTimerDesc = undefined;
 
+    };
+
+    //Destroy the timer milliseconds
+    if(ManageTimerMS != undefined){
+
+        ManageTimerMS.remove();
+        ManageTimerMS = undefined;
+
+    };
+
+    //Create the timer seconds
+    if(ManageTimerS != undefined){
+        ManageTimerS.remove();
+        ManageTimerS = undefined;
+    };
+
+    //Create the timer minutes
+    if(ManageTimerM != undefined){
+        ManageTimerM.remove();
+        ManageTimerM = undefined;
+    };
+
+    //Create the timer hours
+    if(ManageTimerH != undefined){
+        ManageTimerH.remove();
+        ManageTimerH = undefined;
     };
 
 };

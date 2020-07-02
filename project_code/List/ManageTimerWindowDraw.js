@@ -14,6 +14,9 @@
     //Current timer that is being managed
     let ManagedTimerOBJ = 1;
 
+    //Timer Is Counting
+    let TimerRunning = false;
+
 //__________\\
 
 
@@ -41,7 +44,7 @@ const DrawManageTimer = () =>{
     //_____________\\
 
     //In case it cannot find the timer then do not continue
-    if(ManagedTimerOBJ == undefined){
+    if(ManagedTimerOBJ == undefined || TimersArray[ManagedTimerOBJ] == undefined){
         return;
     };
 
@@ -77,6 +80,29 @@ const DrawManageTimer = () =>{
             ManageTimerDesc.elt.value = LocalDesc;
         };
 
+    //____________________||
+
+    //Draw the timer timer||
+
+        //Draw the milliseconds
+        ManageTimerMS.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 + 130, ManageTimerWindowSettings.y + 175);
+
+        //Draw the seconds
+        ManageTimerS.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 + 10, ManageTimerWindowSettings.y + 175);
+        
+        //Draw the minutes
+        ManageTimerM.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 110, ManageTimerWindowSettings.y + 175);
+
+        //Draw the hours
+        ManageTimerH.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 230, ManageTimerWindowSettings.y + 175);
+
+        //Draw sepereation
+        textFont(ArialBold);
+        textAlign(CENTER, TOP);
+        textSize(80);
+        text(':', ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 120, ManageTimerWindowSettings.y + 175);
+        text(':', ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2, ManageTimerWindowSettings.y + 175);
+        text(',', ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 + 120, ManageTimerWindowSettings.y + 175);
     //____________________||
 
 };
