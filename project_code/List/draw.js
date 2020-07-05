@@ -91,13 +91,19 @@ async function DrawTimerListTab (i, j){
     let LocalHovered = false;
 
     if(CheckIfMouseInRect( {x: TimerListSizes.x, y: TimerListSizes.y + (j * 100), w: 800, h: 100}, mouseX, mouseY)){
-        tint(223, 237, 62);
+        //tint(223, 237, 62);
+        fill(223, 237, 62, 150);
         LocalHovered = true;
+    }else{
+        fill(59, 59, 59, 150);
     };
 
-    image(TimerBackgroundImage, TimerListSizes.x + 100, TimerListSizes.y + (j * 100), 700, 100);
+    //image(TimerBackgroundImage, TimerListSizes.x + 100, TimerListSizes.y + (j * 100), 700, 100);
 
-    noTint();
+    //    noTint();
+
+    
+    rect(TimerListSizes.x + 100, TimerListSizes.y + (j * 100), 700, 100);
 
     //Draw the timer image
     if(TimersImages[i] != undefined){
@@ -111,7 +117,9 @@ async function DrawTimerListTab (i, j){
     };
 
     //Draw the timer name
-    image(TimerNameImage, TimerListSizes.x + 100, TimerListSizes.y + (j * 100) - 15, 225, 35);
+    //image(TimerNameImage, TimerListSizes.x + 100, TimerListSizes.y + (j * 100) - 15, 225, 35);
+    fill(33, 33, 33);
+    rect(TimerListSizes.x + 100, TimerListSizes.y + (j * 100) - 15, 225, 35);
     fill(255, 255);
     textSize(30);
     textAlign(CENTER, CENTER);

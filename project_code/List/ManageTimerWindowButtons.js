@@ -3,6 +3,15 @@
     //Close button
     let ManageTimerCloseButton;
 
+    //Run/Stop button
+    let ManageTimerRunButton;
+
+    //Reset button
+    let ManageTimerResetButton;
+
+    //Delete Button
+    let ManageTimerDeleteButton;
+
     //Timer Name Input
     let ManageTimerName;
 
@@ -20,6 +29,9 @@
 
     //Timer hours input
     let ManageTimerH;
+
+    //Timer Counting
+    let IsCustomTimerCounting = {is: false, id: 1};
 
 //__________\\
 
@@ -46,6 +58,117 @@ const SetupManageTimerButtons = () =>{
 
     });
 
+    //Run timer button
+    ManageTimerRunButton = new button1(0, 0, 75, 75);
+    ManageTimerRunButton.color = {r: 2, g: 145, b: 0};
+    ManageTimerRunButton.transparency = 175;
+    ManageTimerRunButton.image = CircleButton;
+    ManageTimerRunButton.text = 'Start';
+    ManageTimerRunButton.textColor = {r: 0, g: 255, b: 0};
+    ManageTimerRunButton.fontSize = 22;
+    ManageTimerRunButton.addHovering(()=>{
+        ManageTimerRunButton.x -= 5;
+        ManageTimerRunButton.y -= 5;
+        ManageTimerRunButton.w += 10;
+        ManageTimerRunButton.h += 10;
+    });
+    ManageTimerRunButton.eventClick1(()=>{
+
+        if(IsCustomTimerCounting.is){
+            //In case the timer is running make it stop and change the button aspect
+            IsCustomTimerCounting.is = false;
+            ManageTimerRunButton.color = {r: 2, g: 145, b: 0};
+            ManageTimerRunButton.textColor = {r: 0, g: 255, b: 0};
+            ManageTimerRunButton.text = 'Start';
+
+
+        }else{
+
+            //In case the timer is not running make it start the counting and change the button aspect
+            IsCustomTimerCounting.id = ManagedTimerOBJ;
+            IsCustomTimerCounting.is = true;
+            ManageTimerRunButton.color = {r: 145, g: 2, b: 0};
+            ManageTimerRunButton.textColor = {r: 255, g: 43, b: 90};
+            ManageTimerRunButton.text = 'Stop';
+        };
+
+    });
+
+    //Reset timer button
+    ManageTimerResetButton = new button1(0, 0, 75, 75);
+    ManageTimerResetButton.color = {r: 128, g: 128, b: 128};
+    ManageTimerResetButton.transparency = 175;
+    ManageTimerResetButton.image = CircleButton;
+    ManageTimerResetButton.text = 'Reset';
+    ManageTimerResetButton.textColor = {r: 255, g: 255, b: 255};
+    ManageTimerResetButton.fontSize = 22;
+    ManageTimerResetButton.addHovering(()=>{
+        ManageTimerResetButton.x -= 5;
+        ManageTimerResetButton.y -= 5;
+        ManageTimerResetButton.w += 10;
+        ManageTimerResetButton.h += 10;
+    });
+    ManageTimerResetButton.eventClick1(()=>{
+
+        let LocalBoolean = window.confirm('Do you wish to reset this timer?\nOk to reset, cancel to cancel the proccess');
+
+        if(LocalBoolean){  
+
+            //Reset the timer value
+            TimersArray[ManagedTimerOBJ].timepassed = 0;
+
+            //Update the values on the UI
+            UpdateCustomTimerValues();
+        };
+
+    });
+
+    //Delete timer button
+    ManageTimerDeleteButton = new button1(0, 0, 75, 75);
+    ManageTimerDeleteButton.color = {r: 145, g: 2, b: 0};
+    ManageTimerDeleteButton.transparency = 175;
+    ManageTimerDeleteButton.image = CircleButton;
+    ManageTimerDeleteButton.text = 'Delete';
+    ManageTimerDeleteButton.textColor = {r: 255, g: 43, b: 90};
+    ManageTimerDeleteButton.fontSize = 22;
+    ManageTimerDeleteButton.addHovering(()=>{
+        ManageTimerDeleteButton.x -= 5;
+        ManageTimerDeleteButton.y -= 5;
+        ManageTimerDeleteButton.w += 10;
+        ManageTimerDeleteButton.h += 10;
+    });
+    ManageTimerDeleteButton.eventClick1(()=>{
+
+        let LocalBoolean = window.confirm('Do you wish to delete this timer?\nOk to delete, cancel to cancel the proccess');
+        
+        if(LocalBoolean){
+
+            let LocalTimerOBJ = ManagedTimerOBJ;
+
+            ShowManageTimerWindow = false;
+            ManagedTimerOBJ = undefined;
+
+            alert('The timer has been removed from your list!');
+
+            if(LocalTimerOBJ == 0){
+                TimersArray.splice(LocalTimerOBJ, LocalTimerOBJ + 1);
+                TimersImages.splice(LocalTimerOBJ, LocalTimerOBJ + 1);  
+
+            }else{
+
+                TimersArray.splice(LocalTimerOBJ, LocalTimerOBJ);
+                TimersImages.splice(LocalTimerOBJ, LocalTimerOBJ);                
+            };
+
+
+
+            
+
+
+        };
+
+
+    });
 };
 
 const ManageTimerInputs = () =>{
@@ -155,5 +278,7 @@ const ManageTimerClick = info =>{
 
     //Closing window event
     ManageTimerCloseButton.click1(info);
-
+    ManageTimerResetButton.click1(info);
+    ManageTimerDeleteButton.click1(info);
+    ManageTimerRunButton.click1(info);
 };

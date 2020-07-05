@@ -112,6 +112,12 @@ function draw() {
     DrawAbout();
   };
 
+  //Count custom timer
+  if(IsCustomTimerCounting.is){
+    TimersArray[IsCustomTimerCounting.id].timepassed += deltaTime/1000;
+    UpdateCustomTimerValues();
+  };
+
   //Clean the new timer inputs
   if(!NewTimerWindowStatus && UploadImageButton != undefined){
 

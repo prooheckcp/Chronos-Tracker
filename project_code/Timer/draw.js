@@ -110,7 +110,7 @@ const AddTimerInputs = (x, y, response) =>{
 const AddCustomTimerInputs = (x, y, response) =>{
 
     let InpVar;
-    InpVar = createInput('00');
+    InpVar = createInput('__');
     InpVar.size(100, 100);
     InpVar.position(x, y);
     InpVar.style('background-color', 'black');
@@ -222,9 +222,12 @@ function UpdateTimerNumbersINP(){
 //Update the timer values of the timer
 function UpdateCustomTimerNumbersINP(){
     if(!(isNaN(Number(this.value())))){
-        
+
         //Equation here
-        let CalculateAmount = ManageTimerH.elt.value * 3600 + ManageTimerM.elt.value * 60 + ManageTimerS.elt.value +  (ManageTimerMS.elt.value/100);
+        let CalculateAmount = Number(ManageTimerH.elt.value) * 3600 + Number(ManageTimerM.elt.value) * 60 + Number(ManageTimerS.elt.value) +  (Number(ManageTimerMS.elt.value)/100);
+        
+        print(CalculateAmount);
+
         if(CalculateAmount != TimerCount){
             TimersArray[ManagedTimerOBJ].timepassed = Number(CalculateAmount);
             UpdateCustomTimerValues();
@@ -235,8 +238,55 @@ function UpdateCustomTimerNumbersINP(){
 };
 
 
-//To do
+//Update custom timers values
 const UpdateCustomTimerValues = () =>{
+
+    //Calculate the amount of time in miliseconds, seconds, minutes and hours||
+
+        let LocalTime;
+        
+        if(ManagedTimerOBJ == undefined){
+            LocalTime = TimersArray[IsCustomTimerCounting.id].timepassed;
+        }else{
+            LocalTime = TimersArray[ManagedTimerOBJ].timepassed;
+        };
+
+        let LocalMiliSeconds = Math.floor((LocalTime - Math.floor(LocalTime)) * 100);
+        let LocalSeconds = Math.floor(LocalTime) - Math.floor(LocalTime/60) * 60;
+        let LocalMinutes = Math.floor(LocalTime/60) - Math.floor(LocalTime/3600) * 60;
+        let LocalHours = Math.floor(LocalTime/3600);
+    //_______________________________________________________________________||
+
+    //Update the values display||
+
+        if(ManageTimerMS == undefined || ManageTimerS == undefined || ManageTimerM == undefined || ManageTimerH == undefined){
+            return;
+        };
+
+        if(LocalMiliSeconds > 10){
+            ManageTimerMS.elt.value = LocalMiliSeconds;
+        }else{
+            ManageTimerMS.elt.value = '0' + LocalMiliSeconds;
+        };
+
+        if(LocalSeconds > 10){
+            ManageTimerS.elt.value = LocalSeconds;
+        }else{
+            ManageTimerS.elt.value = '0' + LocalSeconds;
+        };
+
+        if(LocalMinutes > 10){
+            ManageTimerM.elt.value = LocalMinutes;
+        }else{
+            ManageTimerM.elt.value = '0' + LocalMinutes;
+        };
+
+        if(LocalHours > 10){
+            ManageTimerH.elt.value = LocalHours;
+        }else{
+            ManageTimerH.elt.value = '0' + LocalHours;
+        };
+    //_________________________||
 
 };
 

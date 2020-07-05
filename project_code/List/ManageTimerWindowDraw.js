@@ -1,7 +1,7 @@
 //Variables\\
 
     //Wether the window is displayed or not
-    let ShowManageTimerWindow = true;
+    let ShowManageTimerWindow = false;
 
     //The Window properties
     let ManageTimerWindowSettings = {
@@ -84,6 +84,11 @@ const DrawManageTimer = () =>{
 
     //Draw the timer timer||
 
+        //Reset the values
+        if(ManageTimerMS.elt.value == '__' || ManageTimerS.elt.value == '__' || ManageTimerM.elt.value == '__' || ManageTimerH.elt.value == '__'){
+            UpdateCustomTimerValues();
+        };
+
         //Draw the milliseconds
         ManageTimerMS.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 + 130, ManageTimerWindowSettings.y + 175);
 
@@ -104,6 +109,31 @@ const DrawManageTimer = () =>{
         text(':', ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2, ManageTimerWindowSettings.y + 175);
         text(',', ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 + 120, ManageTimerWindowSettings.y + 175);
     //____________________||
+
+    //Draw the buttons||
+
+        //Run/Stop Button
+        ManageTimerRunButton.w = 75;
+        ManageTimerRunButton.h = 75;
+        ManageTimerRunButton.x = ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - ManageTimerRunButton.w/2;
+        ManageTimerRunButton.y = ManageTimerWindowSettings.y + ManageTimerWindowSettings.h - ManageTimerRunButton.h - 50;
+        ManageTimerRunButton.draw();
+
+        //Reset button
+        ManageTimerResetButton.w = 75;
+        ManageTimerResetButton.h = 75;        
+        ManageTimerResetButton.x = ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - ManageTimerResetButton.w/2 - 200;
+        ManageTimerResetButton.y = ManageTimerWindowSettings.y + ManageTimerWindowSettings.h - ManageTimerResetButton.h - 50;
+        ManageTimerResetButton.draw();
+
+        //Delete timer button
+        ManageTimerDeleteButton.w = 75;
+        ManageTimerDeleteButton.h = 75;        
+        ManageTimerDeleteButton.x = ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - ManageTimerDeleteButton.w/2 + 200;
+        ManageTimerDeleteButton.y = ManageTimerWindowSettings.y + ManageTimerWindowSettings.h - ManageTimerDeleteButton.h - 50;
+        ManageTimerDeleteButton.draw();
+
+    //________________||
 
 };
 

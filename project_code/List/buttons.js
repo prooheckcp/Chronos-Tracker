@@ -16,9 +16,10 @@ const LoadListButtons = () =>{
     //Add a new timer to the list\\
 
         AddANewTimer = new button1(0, 0, 50, 50);
-        AddANewTimer.image = GreenButtonImage;
+        //AddANewTimer.image = GreenButtonImage;
+        AddANewTimer.image = CircleButton;
         AddANewTimer.transparency = 255;
-        AddANewTimer.color = {r: 255, g: 255, b: 255};
+        AddANewTimer.color = {r: 0, g: 175, b: 0};
         AddANewTimer.text = '+';
         AddANewTimer.fontSize = 50;
         AddANewTimer.textColor = {r: 40, g: 40, b: 40};
@@ -28,7 +29,7 @@ const LoadListButtons = () =>{
             AddANewTimer.h += 10;
             AddANewTimer.x -= 5;
             AddANewTimer.y -= 5;      
-            tint(2, 145, 0);   
+            tint(2, 220, 0);   
         });
         AddANewTimer.eventClick1(()=>{
             NewTimerWindowStatus = true;
@@ -38,7 +39,8 @@ const LoadListButtons = () =>{
     //Move to the next page\\
 
         NextPageList = new button1(0, 0, 50, 50);
-        NextPageList.image = YellowButtonImage;
+        //NextPageList.image = YellowButtonImage;
+        NextPageList.image = CircleButton;
         NextPageList.transparency = 255;
         NextPageList.color = {r: 255, g: 255, b: 255};
         NextPageList.textColor = {r: 40, g: 40, b: 40};
@@ -65,7 +67,8 @@ const LoadListButtons = () =>{
     //Move to the last page\\
 
     LastPageList = new button1(0, 0, 50, 50);
-    LastPageList.image = YellowButtonImage;
+    //LastPageList.image = YellowButtonImage;
+    LastPageList.image = CircleButton;
     LastPageList.transparency = 255;
     LastPageList.color = {r: 255, g: 255, b: 255};
     LastPageList.text = '<';
