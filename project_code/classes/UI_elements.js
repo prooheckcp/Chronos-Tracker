@@ -90,7 +90,7 @@ class button1 {
 
         if(CheckIfMouseInRect(this, mouseX, mouseY) && buttonused == 1){
 
-            
+            TappingSound.play();
             this.button1();
         };
     };

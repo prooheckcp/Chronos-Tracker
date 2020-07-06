@@ -18,7 +18,7 @@
     let AboutID = 3;
 
     //The current tab ID
-    let TabID = 2;
+    let TabID = 0;
 
 
   //Fonts
@@ -28,6 +28,8 @@
   let DenseFont;
   let AntiCoronaFont;
 
+  //Sound
+  let TappingSound;
 
   //Assets
   let TimerBackgroundImage;
@@ -50,6 +52,9 @@ function preload(){
   DenseFont = loadFont("project_code/assets/DenseLetter.ttf");
   AntiCoronaFont = loadFont("project_code/assets/AntiCorona.ttf");
 
+  //Load the sounds
+  TappingSound = loadSound('project_code/assets/TappingSoundEffect.mp3');
+  masterVolume(0.2);
 };
 
 
@@ -82,6 +87,8 @@ function setup() {
   //Load the manage timer buttons
   SetupManageTimerButtons();
 
+
+  //Save the timers on a json file
   setInterval( SaveTimersBackEnd, 5000);
 
 };

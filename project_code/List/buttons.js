@@ -18,7 +18,7 @@ const LoadListButtons = () =>{
         AddANewTimer = new button1(0, 0, 50, 50);
         //AddANewTimer.image = GreenButtonImage;
         AddANewTimer.image = CircleButton;
-        AddANewTimer.transparency = 255;
+        AddANewTimer.transparency = 200;
         AddANewTimer.color = {r: 0, g: 175, b: 0};
         AddANewTimer.text = '+';
         AddANewTimer.fontSize = 50;
@@ -41,7 +41,7 @@ const LoadListButtons = () =>{
         NextPageList = new button1(0, 0, 50, 50);
         //NextPageList.image = YellowButtonImage;
         NextPageList.image = CircleButton;
-        NextPageList.transparency = 255;
+        NextPageList.transparency = 200;
         NextPageList.color = {r: 255, g: 255, b: 255};
         NextPageList.textColor = {r: 40, g: 40, b: 40};
         NextPageList.text = '>';
@@ -69,7 +69,7 @@ const LoadListButtons = () =>{
     LastPageList = new button1(0, 0, 50, 50);
     //LastPageList.image = YellowButtonImage;
     LastPageList.image = CircleButton;
-    LastPageList.transparency = 255;
+    LastPageList.transparency = 200;
     LastPageList.color = {r: 255, g: 255, b: 255};
     LastPageList.text = '<';
     LastPageList.fontSize = 40;
@@ -118,6 +118,7 @@ const PressedTimerList = (info) => {
             //Open the timers window
             ShowManageTimerWindow = true;
             ManagedTimerOBJ = i;
+            TappingSound.play();
 
         };
     };

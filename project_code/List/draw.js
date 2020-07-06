@@ -113,7 +113,7 @@ async function DrawTimerListTab (i, j){
     };
     
     if(LocalHovered){
-        image(TimerImagePortrait, TimerListSizes.x - 8.5, TimerListSizes.y + (j * 100) - 8.5, 115, 115);
+        //image(TimerImagePortrait, TimerListSizes.x - 8.5, TimerListSizes.y + (j * 100) - 8.5, 115, 115);
     };
 
     //Draw the timer name

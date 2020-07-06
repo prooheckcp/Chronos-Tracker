@@ -7,6 +7,7 @@
     const fs = require('fs');
     const jsonInfo = require('./project_code/jsonServices/functions');
     const { stringify } = require('querystring');
+    require('events').EventEmitter.defaultMaxListeners = 20;
 //______________________\\
 
 
