@@ -6,6 +6,8 @@
 
     //Big pictures
     let BackgroundImage;
+    let BackgroundImage2;
+    let BackgroundImage3;
 
     //logos
     let gitHubLogo;
@@ -19,7 +21,9 @@
 const loadTheImages = () => {
 
     //Big pictures
-    BackgroundImage = loadImage('https://cdn.discordapp.com/attachments/670023265455964198/722471929122127882/background.jpg');
+    BackgroundImage = loadImage('Databases/backgrounds/Defaultbackground1.jpg');
+    BackgroundImage2 = loadImage('Databases/backgrounds/Defaultbackground2.jpg');
+    BackgroundImage3 = loadImage('Databases/backgrounds/Defaultbackground3.jpg');
 
     //GitHub logo
     gitHubLogo = loadImage("project_code/assets/github.png");

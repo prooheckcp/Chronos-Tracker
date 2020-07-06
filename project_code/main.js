@@ -87,6 +87,8 @@ function setup() {
   //Load the manage timer buttons
   SetupManageTimerButtons();
 
+  //Load the home buttons
+  LoadHomeButton();
 
   //Save the timers on a json file
   setInterval( SaveTimersBackEnd, 5000);
@@ -100,11 +102,15 @@ function windowResized() {
 };
 
 function draw() {
+
   //Covers the whole background
   background(220);
 
-  image(BackgroundImage, 0, 0, windowWidth, windowHeight);
-
+  //Draw the background image
+  if(CurrentBackgroundImage != undefined){
+    image(CurrentBackgroundImage, 0, 0, windowWidth, windowHeight);
+  };
+  
   //Count the timer time
   CountTime();
 
@@ -169,7 +175,10 @@ function draw() {
 
 function mousePressed(clickInfo){
 
-
+  //Clicking event on the home page
+  if(TabID == HomeID){
+    PressedHomeWindow(clickInfo.buttons);
+  };
 
   //Clicking event on the timer list
   if(TabID == ListID && !NewTimerWindowStatus && !ShowManageTimerWindow){
@@ -184,7 +193,7 @@ function mousePressed(clickInfo){
   };
 
   //for the UI elements
-  if(!NewTimerWindowStatus && !ShowManageTimerWindow){
+  if(!NewTimerWindowStatus && !ShowManageTimerWindow && !ChangeImageWindow){
 
     for(button of UIelements){
       button.click1(clickInfo.buttons);

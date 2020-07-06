@@ -17,11 +17,13 @@ module.exports = ()=>{
         title: 'Chronos Tracker',
         minWidth: 1000,
         minHeight: 600,
-        x: 0,
-        y: 0,
+        x: 300,
+        y: 100,
         webPreferences: {nodeIntegration: true}
     });
     
+    win.setMenu(null);
+
     //Restart the front end
 	globalShortcut.register('CommandOrControl+R', function() {
         win.reload()

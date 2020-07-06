@@ -35,5 +35,31 @@ module.exports =
 
         });
 
+
+        //Load the backgrounds
+        ipcMain.on('request-load-background', (event, arg) =>{
+
+            let LocalData = fs.readFileSync(path.join(__dirname, 'Databases', 'background.json'));
+
+            event.reply('receive-load-background', JSON.parse(LocalData));
+
+        });
+
+        //Save the backgrounds
+        ipcMain.on('request-backgrounds-save', (event, arg) =>{
+
+            fs.writeFileSync(path.join(__dirname, 'Databases', 'background.json'), JSON.stringify(arg));
+
+        });
+
+        //Save image on folder
+        ipcMain.on('save-background-folder', (event, arg) =>{
+
+            fse.copySync(arg.path, path.join(__dirname, 'Databases', 'backgrounds', arg.name));
+
+            event.reply('save-background-folder-reply', path.join(__dirname, 'Databases', 'backgrounds', arg.name));
+
+        });
+
     };
 ;

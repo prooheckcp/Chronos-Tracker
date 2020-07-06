@@ -157,7 +157,7 @@ async function DrawTimerListTab (i, j){
         LocalHours = '0' + LocalHours;
     };
 
-    let LocalTimeString = LocalHours + ':' + LocalMinutes + ':' + LocalSeconds + ':' + LocalMiliSeconds;
+    let LocalTimeString = LocalHours + ':' + LocalMinutes + ':' + LocalSeconds + ',' + LocalMiliSeconds;
 
     text( LocalTimeString, TimerListSizes.x + 120, TimerListSizes.y + (j * 100) + 60);
 };
