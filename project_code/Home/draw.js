@@ -209,4 +209,13 @@ const ChangeImageWindowDraw = () =>{
         };
     //_______________||
 
+    //Close button||
+
+
+        CloseChangeWindowButton.w = 55;
+        CloseChangeWindowButton.h = 55;
+        CloseChangeWindowButton.x = ChangeImageWindowConf.x + ChangeImageWindowConf.w - CloseChangeWindowButton.w - 10; 
+        CloseChangeWindowButton.y = ChangeImageWindowConf.y + ChangeImageWindowConf.h - CloseChangeWindowButton.h - 10;
+        CloseChangeWindowButton.draw();
+    //____________||
 };

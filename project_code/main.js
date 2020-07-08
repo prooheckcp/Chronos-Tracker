@@ -63,6 +63,8 @@ function setup() {
   //Frame
   frameRate(30);
 
+  CreateEventsJSON();
+
   //Sets the canvas to fullscreen
   createCanvas(windowWidth, windowHeight);
 
@@ -180,9 +182,13 @@ function mousePressed(clickInfo){
     PressedHomeWindow(clickInfo.buttons);
   };
 
+  
   //Clicking event on the timer list
   if(TabID == ListID && !NewTimerWindowStatus && !ShowManageTimerWindow){
-    PressedTimerList(clickInfo.buttons);
+    PressedTimerList(clickInfo.buttons); 
+  }else if(TabID == ListID && ShowManageTimerWindow){
+     //Clickin on timer manager window
+    ManageTimerClick(clickInfo.buttons);
   };
 
 
@@ -190,6 +196,7 @@ function mousePressed(clickInfo){
   if(TabID == TimerID && !NewTimerWindowStatus){
 
     TimerClickEvents(clickInfo.buttons);
+
   };
 
   //for the UI elements
@@ -211,10 +218,6 @@ function mousePressed(clickInfo){
     AboutClickEvents(clickInfo.buttons);
   };
 
-  //Clickin on timer manager window
-  if(TabID == ListID && ShowManageTimerWindow){
-    ManageTimerClick(clickInfo.buttons);
-  };
 
 
 

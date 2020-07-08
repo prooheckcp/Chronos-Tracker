@@ -20,7 +20,7 @@ module.exports =
 
             fse.copySync(arg.path, path.join(__dirname, 'Databases', 'images', arg.name));
 
-            event.reply('image-reply', path.join(__dirname, 'Databases', 'images', arg.name));
+            event.reply('image-reply', {path: path.join(__dirname, 'Databases', 'images', arg.name), lo: arg.lo});
 
         });
 

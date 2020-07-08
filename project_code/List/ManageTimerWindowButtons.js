@@ -55,7 +55,12 @@ const SetupManageTimerButtons = () =>{
         //Reset variables in order to properly close the window
         ShowManageTimerWindow = false;
         ManagedTimerOBJ = undefined;
-
+        
+        //Stop counting the timer
+        IsCustomTimerCounting.is = false;
+        ManageTimerRunButton.color = {r: 2, g: 145, b: 0};
+        ManageTimerRunButton.textColor = {r: 0, g: 255, b: 0};
+        ManageTimerRunButton.text = 'Start';
     });
 
     //Run timer button
@@ -112,7 +117,14 @@ const SetupManageTimerButtons = () =>{
 
         let LocalBoolean = window.confirm('Do you wish to reset this timer?\nOk to reset, cancel to cancel the proccess');
 
+
         if(LocalBoolean){  
+
+            //Stop counting the timer
+            IsCustomTimerCounting.is = false;
+            ManageTimerRunButton.color = {r: 2, g: 145, b: 0};
+            ManageTimerRunButton.textColor = {r: 0, g: 255, b: 0};
+            ManageTimerRunButton.text = 'Start';
 
             //Reset the timer value
             TimersArray[ManagedTimerOBJ].timepassed = 0;
@@ -143,6 +155,12 @@ const SetupManageTimerButtons = () =>{
         
         if(LocalBoolean){
 
+            //Stop counting the timer
+            IsCustomTimerCounting.is = false;
+            ManageTimerRunButton.color = {r: 2, g: 145, b: 0};
+            ManageTimerRunButton.textColor = {r: 0, g: 255, b: 0};
+            ManageTimerRunButton.text = 'Start';
+
             let LocalTimerOBJ = ManagedTimerOBJ;
 
             ShowManageTimerWindow = false;
@@ -150,21 +168,17 @@ const SetupManageTimerButtons = () =>{
 
             alert('The timer has been removed from your list!');
 
+        
+
+            TimersArray.remove(TimersArray[LocalTimerOBJ]);
+            TimersImages.splice(LocalTimerOBJ, LocalTimerOBJ); 
+
             if(LocalTimerOBJ == 0){
-                TimersArray.splice(LocalTimerOBJ, LocalTimerOBJ + 1);
                 TimersImages.splice(LocalTimerOBJ, LocalTimerOBJ + 1);  
-
             }else{
-
-                TimersArray.splice(LocalTimerOBJ, LocalTimerOBJ);
                 TimersImages.splice(LocalTimerOBJ, LocalTimerOBJ);                
             };
-
-
-
             
-
-
         };
 
 

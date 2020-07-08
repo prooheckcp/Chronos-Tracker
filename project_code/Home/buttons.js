@@ -5,6 +5,9 @@
     let ChangeImageWindowButton;
 
     let UploadNewBackgroundImage;
+
+    let CloseChangeWindowButton;
+
 //_________||
 
 const LoadHomeButton = () =>{
@@ -17,7 +20,7 @@ const LoadHomeButton = () =>{
         ChangeImageWindowButton.color = {r: 209, g: 214, b: 54};
         ChangeImageWindowButton.text = 'img';
         ChangeImageWindowButton.fontSize = 40;
-        ChangeImageWindowButton.textColor = {r: 40, g: 40, b: 40};
+        ChangeImageWindowButton.textColor = {r: 100, g: 100, b: 100};
         ChangeImageWindowButton.font = AntiCoronaFont;
         ChangeImageWindowButton.addHovering(()=>{
             ChangeImageWindowButton.w += 10;
@@ -34,12 +37,38 @@ const LoadHomeButton = () =>{
             });       
     //__________________________||
 
+    //Close button||
+
+        CloseChangeWindowButton = new button1(0, 0, 50, 50);
+        CloseChangeWindowButton.image = CircleButton;
+        CloseChangeWindowButton.color = {r: 145, g: 2, b: 0};
+        CloseChangeWindowButton.text = 'X';
+        CloseChangeWindowButton.fontSize = 40;
+        CloseChangeWindowButton.transparency = 200;
+        CloseChangeWindowButton.addHovering(()=>{
+            CloseChangeWindowButton.x -= 5;
+            CloseChangeWindowButton.y -= 5;
+            CloseChangeWindowButton.w += 10;
+            CloseChangeWindowButton.h += 10;
+            });
+            CloseChangeWindowButton.eventClick1(()=>{
+
+                ChangeImageWindow = false;
+
+            });
+    //____________||
+
 };
 
 const PressedHomeWindow = info =>{
 
     //Open/close the change background image window
     ChangeImageWindowButton.click1(info);
+
+    if(ChangeImageWindow){
+        CloseChangeWindowButton.click1(info);
+    };
+    
 
     //Clicked on default image 1
     if(CheckIfMouseInRect({

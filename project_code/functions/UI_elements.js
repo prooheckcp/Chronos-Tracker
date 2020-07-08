@@ -1,3 +1,14 @@
+Array.prototype.remove = function() {
+    var what, a = arguments, L = a.length, ax;
+    while (L && this.length) {
+        what = a[--L];
+        while ((ax = this.indexOf(what)) !== -1) {
+            this.splice(ax, 1);
+        }
+    }
+    return this;
+};
+
 const CheckIfMouseInRect = (rectangle, mx, my) =>{
 
     return (mx >= rectangle.x && mx <= rectangle.x + rectangle.w && my >= rectangle.y && my <= rectangle.y + rectangle.h);
