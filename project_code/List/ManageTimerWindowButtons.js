@@ -238,7 +238,7 @@ const ManageTimerInputs = () =>{
 
     //Create the timer hours
     if(ManageTimerH == undefined){
-        ManageTimerH = AddCustomTimerInputs();
+        ManageTimerH = AddCustomTimerInputs(0, 0, 'y');
     };
 
 };

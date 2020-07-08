@@ -99,7 +99,7 @@ const DrawManageTimer = () =>{
         ManageTimerM.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 110, ManageTimerWindowSettings.y + 175);
 
         //Draw the hours
-        ManageTimerH.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 230, ManageTimerWindowSettings.y + 175);
+        ManageTimerH.position(ManageTimerWindowSettings.x + ManageTimerWindowSettings.w/2 - 330, ManageTimerWindowSettings.y + 175);
 
         //Draw sepereation
         textFont(ArialBold);
