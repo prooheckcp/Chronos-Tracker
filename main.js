@@ -1,5 +1,4 @@
 //Modules and libraries\\
-
     const {app, BrowserWindow, globalShortcut, ipcMain, ipcRenderer} = require('electron');
     const path = require('path');
     const url = require('url');

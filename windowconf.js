@@ -19,7 +19,10 @@ module.exports = ()=>{
         minHeight: 600,
         x: 300,
         y: 100,
-        webPreferences: {nodeIntegration: true}
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        }
     });
     
     win.setMenu(null);
