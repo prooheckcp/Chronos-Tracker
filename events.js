@@ -2,7 +2,7 @@ const { ipcMain } = require('electron');
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
-const userDataPath = app.getPath('userData');
+const userDataPath = __dirname
 
 module.exports = 
     () =>{
