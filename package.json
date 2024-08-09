@@ -7,7 +7,8 @@
   "scripts": {
     "start": "electron .",
     "prod": "electron-packager .",
-    "build": "electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite"
+    "build": "electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite --icon=assets/iconMac.icns",
+    "permissions": "sudo chmod -R 755 ChronosTracker-darwin-x64"
   },
   "build": {
     "appId": "com.example.yourapp",
