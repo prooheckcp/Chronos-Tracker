@@ -6,14 +6,29 @@
   "type": "commonjs",
   "scripts": {
     "start": "electron .",
-    "prod": "electron-packager ."
+    "prod": "electron-packager .",
+    "build": "electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite"
+  },
+  "build": {
+    "appId": "com.example.yourapp",
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   },
   "author": "prooheckcp",
   "license": "ISC",
   "dependencies": {
     "electron": "^9.0.4",
-    "electron-packager": "^14.2.1",
     "file-system": "^2.2.2",
     "fs-extra": "^9.0.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
   }
 }
