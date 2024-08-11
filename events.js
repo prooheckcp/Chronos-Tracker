@@ -1,65 +1,60 @@
-const { ipcMain } = require('electron');
+const { ipcMain, app } = require('electron');
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
-const userDataPath = __dirname
+const userDataPath = app.getPath('userData');
+const timersPath = path.join(userDataPath, 'Timers.json');
+const imagesPath = path.join(userDataPath, "Images")
+const backgroundsJson = path.join(userDataPath, "Background.json")
 
 module.exports = 
     () =>{
+        if (!fs.existsSync(timersPath)) {
+            fs.writeFileSync(timersPath, JSON.stringify({}));
+        }
 
-        //Save event
-        ipcMain.on('request-mainprocess-save', (event, arg) => {
+        if (!fs.existsSync(imagesPath)){
+            fs.mkdirSync(imagesPath, { recursive: true });
+        }
 
-            fs.writeFileSync(path.join(userDataPath, 'Databases', 'timers.json'), JSON.stringify(arg));
+        if (!fs.existsSync(backgroundsJson)){
+            fs.writeFileSync(backgroundsJson, JSON.stringify({}))
+        }
 
-            event.reply('save-reply', 'Data has been saved');
-            
+        //Load Timer Data
+        ipcMain.on('request-load-data', (event, arg) =>{
+            let LocalData = fs.readFileSync(timersPath);
+            event.reply('receive-load-request', JSON.parse(LocalData));
         });
+
+        //Save Timer Data
+        ipcMain.on('request-mainprocess-save', (event, arg) => {
+            fs.writeFileSync(timersPath, JSON.stringify(arg));
+            event.reply('save-reply', 'Data has been saved');
+        });
+
 
         //Create image path event
         ipcMain.on('request-mainprocess-image', (event, arg) => {
-
-            fse.copySync(arg.path, path.join(userDataPath, 'Databases', 'images', arg.name));
-
-            event.reply('image-reply', {path: path.join(userDataPath, 'Databases', 'images', arg.name), lo: arg.lo});
-
+            fse.copySync(arg.path, imagesPath);
+            event.reply('image-reply', {path: path.join(imagesPath, arg.name), lo: arg.lo});
         });
-
-
-        //Load the data
-        ipcMain.on('request-load-data', (event, arg) =>{
-
-
-            let LocalData = fs.readFileSync(path.join(userDataPath, 'Databases', 'timers.json'));
-
-            event.reply('receive-load-request', JSON.parse(LocalData));
-
-        });
-
 
         //Load the backgrounds
-        ipcMain.on('request-load-background', (event, arg) =>{
-
-            let LocalData = fs.readFileSync(path.join(userDataPath, 'Databases', 'background.json'));
-
-            event.reply('receive-load-background', JSON.parse(LocalData));
-
+        ipcMain.on('request-load-background', (event, _arg) =>{
+            console.log(backgroundsJson)
+            event.reply('receive-load-background', JSON.parse(fs.readFileSync(backgroundsJson)));
         });
 
         //Save the backgrounds
-        ipcMain.on('request-backgrounds-save', (event, arg) =>{
-
-            fs.writeFileSync(path.join(userDataPath, 'Databases', 'background.json'), JSON.stringify(arg));
-
+        ipcMain.on('request-backgrounds-save', (_event, arg) =>{
+            fs.writeFileSync(backgroundsJson, JSON.stringify(arg));
         });
 
         //Save image on folder
         ipcMain.on('save-background-folder', (event, arg) =>{
-
-            fse.copySync(arg.path, path.join(userDataPath, 'Databases', 'backgrounds', arg.name));
-
-            event.reply('save-background-folder-reply', path.join(userDataPath, 'Databases', 'backgrounds', arg.name));
-
+            fse.copySync(arg.path, path.join(imagesPath, arg.name));
+            event.reply('save-background-folder-reply', path.join(imagesPath, arg.name));
         });
 
     };

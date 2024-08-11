@@ -123,18 +123,19 @@ const CreateEventsJSON = () =>{
         HoldBackgroundsData = arg;
 
         //Set the images
-        for(let i = 0; i < arg.routes.length; i++){
+        if(arg.routes){
+            for(let i = 0; i < arg.routes.length; i++){
 
-            AllBackgroundImages[i] = loadImage(arg.routes[i]);
+                AllBackgroundImages[i] = loadImage(arg.routes[i]);
 
-            if(i == arg.Current){
+                if(i == arg.Current){
 
-                CurrentBackgroundImage = AllBackgroundImages[i];
+                    CurrentBackgroundImage = AllBackgroundImages[i];
 
-            };
+                };
 
-        };
-
+            };            
+        }
 
         if(arg.Current == 3){
 
