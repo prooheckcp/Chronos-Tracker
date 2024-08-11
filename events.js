@@ -2,60 +2,100 @@ const { ipcMain, app } = require('electron');
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
+
+// Ensure this is executed after Electron's `app` is ready
 const userDataPath = app.getPath('userData');
 const timersPath = path.join(userDataPath, 'Timers.json');
-const imagesPath = path.join(userDataPath, "Images")
-const backgroundsJson = path.join(userDataPath, "Background.json")
+const imagesPath = path.join(userDataPath, 'Images');
+const backgroundsJson = path.join(userDataPath, 'Background.json');
 
-module.exports = 
-    () =>{
+module.exports = () => {
+    console.log(timersPath)
+    // Ensure the necessary files and directories exist
+    try {
         if (!fs.existsSync(timersPath)) {
             fs.writeFileSync(timersPath, JSON.stringify({}));
         }
 
-        if (!fs.existsSync(imagesPath)){
+        if (!fs.existsSync(imagesPath)) {
             fs.mkdirSync(imagesPath, { recursive: true });
         }
 
-        if (!fs.existsSync(backgroundsJson)){
-            fs.writeFileSync(backgroundsJson, JSON.stringify({}))
+        if (!fs.existsSync(backgroundsJson)) {
+            fs.writeFileSync(backgroundsJson, JSON.stringify({}));
+        }
+    } catch (error) {
+        console.error('Error initializing files/directories:', error);
+    }
+
+    // Load Timer Data
+    ipcMain.handle('request-load-data', async (event) => {
+        try {
+            const localData = await fs.promises.readFile(timersPath);
+            return JSON.parse(localData);
+        } catch (error) {
+            console.error('Error reading timer data:', error);
+            return {};
+        }
+    });
+
+    // Save Timer Data
+    ipcMain.handle('request-mainprocess-save', async (event, arg) => {
+        console.log("Backend listening", arg);
+        try {
+            await fs.promises.writeFile(timersPath, JSON.stringify(arg));
+            return 'Data has been saved';
+        } catch (error) {
+            console.error('Error saving timer data:', error);
+            return 'Failed to save data';
+        }
+    });
+    console.log("Registered?")
+    // Create image path event
+    ipcMain.handle('request-mainprocess-image', async (event, arg) => {
+        try {
+            await fse.copy(arg.path, path.join(imagesPath, arg.name));
+            return { path: path.join(imagesPath, arg.name), lo: arg.lo };
+        } catch (error) {
+            console.error('Error copying image:', error);
+            return { path: '', lo: arg.lo };  // Return a default or error path
+        }
+    });
+
+    // Load the backgrounds
+    ipcMain.handle('request-load-background', async () => {
+        try {
+            const data = await fs.promises.readFile(backgroundsJson);
+            return JSON.parse(data);
+        } catch (error) {
+            console.error('Error reading backgrounds data:', error);
+            return {};
+        }
+    });
+
+    // Save the backgrounds
+    ipcMain.handle('request-backgrounds-save', async (event, arg) => {
+        if (!arg){
+            return;
         }
 
-        //Load Timer Data
-        ipcMain.on('request-load-data', (event, arg) =>{
-            let LocalData = fs.readFileSync(timersPath);
-            event.reply('receive-load-request', JSON.parse(LocalData));
-        });
+        try {
+            await fs.promises.writeFile(backgroundsJson, JSON.stringify(arg));
+            return 'Backgrounds saved';
+        } catch (error) {
+            console.error('Error saving backgrounds data:', error);
+            return 'Failed to save backgrounds';
+        }
+    });
 
-        //Save Timer Data
-        ipcMain.on('request-mainprocess-save', (event, arg) => {
-            fs.writeFileSync(timersPath, JSON.stringify(arg));
-            event.reply('save-reply', 'Data has been saved');
-        });
-
-
-        //Create image path event
-        ipcMain.on('request-mainprocess-image', (event, arg) => {
-            fse.copySync(arg.path, imagesPath);
-            event.reply('image-reply', {path: path.join(imagesPath, arg.name), lo: arg.lo});
-        });
-
-        //Load the backgrounds
-        ipcMain.on('request-load-background', (event, _arg) =>{
-            console.log(backgroundsJson)
-            event.reply('receive-load-background', JSON.parse(fs.readFileSync(backgroundsJson)));
-        });
-
-        //Save the backgrounds
-        ipcMain.on('request-backgrounds-save', (_event, arg) =>{
-            fs.writeFileSync(backgroundsJson, JSON.stringify(arg));
-        });
-
-        //Save image on folder
-        ipcMain.on('save-background-folder', (event, arg) =>{
-            fse.copySync(arg.path, path.join(imagesPath, arg.name));
-            event.reply('save-background-folder-reply', path.join(imagesPath, arg.name));
-        });
-
-    };
-;
+    // Save image in folder
+    ipcMain.handle('save-background-folder', async (event, arg) => {
+        try {
+            await fse.copy(arg.path, path.join(imagesPath, arg.name));
+            return path.join(imagesPath, arg.name);
+        } catch (error) {
+            console.error('Error saving background folder:', error);
+            return '';  // Return an empty or error path
+        }
+    });
+};

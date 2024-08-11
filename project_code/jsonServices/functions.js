@@ -1,6 +1,7 @@
 //Variables\\
 
     const {ipcRenderer, ipcMain} = require('electron');
+const { copySync } = require('fs-extra');
 //__________\\
 
 //To be saved data\\
@@ -23,13 +24,13 @@ const LoadTimerData = () =>{
     //Load Background Images||
 
         //Ask for the backgrounds
-        ipcRenderer.send('request-load-background');
+        ipcRenderer.invoke('request-load-background');
 
     
 
 
     //Asks for the data
-    ipcRenderer.send('request-load-data');
+    ipcRenderer.invoke('request-load-data');
 
 
 };
@@ -75,13 +76,12 @@ const CreateAnewTimerJSON = (name, description, imagename, imagepath) =>{
 
 
 const SaveTimersBackEnd = () =>{
-
-    //Send info to back-end
-    ipcRenderer.send('request-mainprocess-save', TimersArray);
-    
+    console.log("Save arrays: ", TimersArray);
+    //Send info to back-end    
+    ipcRenderer.invoke('request-mainprocess-save', TimersArray);
 
     //Send the info to save the backgrounds data on the backend 
-    ipcRenderer.send('request-backgrounds-save', HoldBackgroundsData);
+    ipcRenderer.invoke('request-backgrounds-save', HoldBackgroundsData);
 
 };
 
