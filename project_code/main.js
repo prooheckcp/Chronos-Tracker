@@ -63,8 +63,6 @@ function setup() {
   //Frame
   frameRate(30);
 
-  CreateEventsJSON();
-
   //Sets the canvas to fullscreen
   createCanvas(windowWidth, windowHeight);
 

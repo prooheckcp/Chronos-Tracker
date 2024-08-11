@@ -48,7 +48,7 @@ module.exports = () => {
             return 'Failed to save data';
         }
     });
-    
+
     // Create image path event
     ipcMain.handle('request-mainprocess-image', async (event, arg) => {
         try {
@@ -85,6 +85,8 @@ module.exports = () => {
             return 'Failed to save backgrounds';
         }
     });
+
+    console.log(imagesPath);
 
     // Save image in folder
     ipcMain.handle('save-background-folder', async (_event, arg) => {

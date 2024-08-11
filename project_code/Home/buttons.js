@@ -158,19 +158,14 @@ const CreateTheHomeInptus = () =>{
                 CurrentBackgroundImage = createImg(file.data, '');   
                 CurrentBackgroundImage.hide();
 
-
-                ipcRenderer.send('save-background-folder', {path: file.file.path, name: file.file.name});
-                ipcRenderer.on('save-background-folder-reply', (event, arg) =>{
-
+                ipcRenderer.invoke('save-background-folder', {path: file.file.path, name: file.file.name}).then((arg)=>{
                     //Add the picture info
                     if(HoldBackgroundsData.routes.length >= 3){
-
                         HoldBackgroundsData.Current = 0;
 
                         HoldBackgroundsData.routes[2] = HoldBackgroundsData.routes[1];
                         HoldBackgroundsData.routes[1] = HoldBackgroundsData.routes[0];
-                        HoldBackgroundsData.routes[0] = arg;
-                        
+                        HoldBackgroundsData.routes[0] = arg;  
                         
                         AllBackgroundImages[2] = AllBackgroundImages[1];
                         AllBackgroundImages[1] = AllBackgroundImages[0];
@@ -181,12 +176,10 @@ const CreateTheHomeInptus = () =>{
                         HoldBackgroundsData.routes[HoldBackgroundsData.routes.length] = arg;
                         
                     };
-
                 });
-
             };
-
         });
+
         UploadNewBackgroundImage.style('background-color', 'black');
         UploadNewBackgroundImage.style('background', 'rgba(0, 0, 0, 0.4)');
         UploadNewBackgroundImage.style('border', 'none');
@@ -196,7 +189,6 @@ const CreateTheHomeInptus = () =>{
         UploadNewBackgroundImage.style('font-weight', 'bold');
         UploadNewBackgroundImage.size(600, 40);
     };
-
 };
 
 const RemoveTheHomeInputs = () =>{
