@@ -1,38 +1,31 @@
-//Variables\\
+const { ipcRenderer } = require('electron');
 
-    const {ipcRenderer, ipcMain} = require('electron');
-const { copySync } = require('fs-extra');
-//__________\\
+let TimersArray = [];
+let TimersImages = [];
 
-//To be saved data\\
+let HoldBackgroundsData;
+let AllBackgroundImages = [];
 
-    //Timers data
-    let TimersArray = [];
-    let TimersImages = [];
+let CurrentBackgroundImage;
 
-    //BackgroundImage
-    let HoldBackgroundsData;
-    let AllBackgroundImages = [];
+const processData = (data) => {
+    console.log(data)
+    TimersArray = data;
 
-    let CurrentBackgroundImage;
-
-//_________________\\
-
+    for(let i = 0; i < TimersArray.length; i++){
+        if(typeof(TimersArray[i].path) == typeof('string')){
+            TimersImages[i] = loadImage(TimersArray[i].path, undefined,err => {if(err) throw err});
+        }else{
+            TimersImages[i] = undefined;
+        }
+    }
+}
 
 const LoadTimerData = () =>{
-
-    //Load Background Images||
-
-        //Ask for the backgrounds
-        ipcRenderer.invoke('request-load-background');
-
-    
-
-
-    //Asks for the data
-    ipcRenderer.invoke('request-load-data');
-
-
+    ipcRenderer.invoke('request-load-background').then((data)=>{
+        TimersImages = data;
+    });
+    ipcRenderer.invoke('request-load-data').then(processData);
 };
 
 const CreateAnewTimerJSON = (name, description, imagename, imagepath) =>{
@@ -129,35 +122,22 @@ const CreateEventsJSON = () =>{
                 AllBackgroundImages[i] = loadImage(arg.routes[i]);
 
                 if(i == arg.Current){
-
                     CurrentBackgroundImage = AllBackgroundImages[i];
-
                 };
 
             };            
         }
 
         if(arg.Current == 3){
-
             //Set the image in case there is none
             CurrentBackgroundImage = BackgroundImage;
-
         }else if(arg.Current == 4){
-
             CurrentBackgroundImage = BackgroundImage2;
-
         }else if(arg.Current == 5){
-
             CurrentBackgroundImage = BackgroundImage3;
-
         };
 
     });
-
-
-
-
-
 
     //______________________||
 
@@ -186,4 +166,3 @@ const CreateEventsJSON = () =>{
     });
 
 };
-

@@ -10,7 +10,6 @@ const imagesPath = path.join(userDataPath, 'Images');
 const backgroundsJson = path.join(userDataPath, 'Background.json');
 
 module.exports = () => {
-    console.log(timersPath)
     // Ensure the necessary files and directories exist
     try {
         if (!fs.existsSync(timersPath)) {
@@ -29,7 +28,7 @@ module.exports = () => {
     }
 
     // Load Timer Data
-    ipcMain.handle('request-load-data', async (event) => {
+    ipcMain.handle('request-load-data', async () => {
         try {
             const localData = await fs.promises.readFile(timersPath);
             return JSON.parse(localData);
@@ -41,7 +40,6 @@ module.exports = () => {
 
     // Save Timer Data
     ipcMain.handle('request-mainprocess-save', async (event, arg) => {
-        console.log("Backend listening", arg);
         try {
             await fs.promises.writeFile(timersPath, JSON.stringify(arg));
             return 'Data has been saved';
@@ -50,7 +48,7 @@ module.exports = () => {
             return 'Failed to save data';
         }
     });
-    console.log("Registered?")
+    
     // Create image path event
     ipcMain.handle('request-mainprocess-image', async (event, arg) => {
         try {
@@ -74,7 +72,7 @@ module.exports = () => {
     });
 
     // Save the backgrounds
-    ipcMain.handle('request-backgrounds-save', async (event, arg) => {
+    ipcMain.handle('request-backgrounds-save', async (_event, arg) => {
         if (!arg){
             return;
         }
@@ -89,7 +87,7 @@ module.exports = () => {
     });
 
     // Save image in folder
-    ipcMain.handle('save-background-folder', async (event, arg) => {
+    ipcMain.handle('save-background-folder', async (_event, arg) => {
         try {
             await fse.copy(arg.path, path.join(imagesPath, arg.name));
             return path.join(imagesPath, arg.name);
