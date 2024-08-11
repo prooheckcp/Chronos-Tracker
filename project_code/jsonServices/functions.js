@@ -25,7 +25,26 @@ const processData = (data) => {
 }
 
 const processBackgrounds = (data) => {
-    TimersImages = data;
+    HoldBackgroundsData = data;
+
+    console.log(data);
+
+    //Set the images
+    for(let i = 0; i < data.routes.length; i++){
+        AllBackgroundImages[i] = loadImage(data.routes[i]);
+        console.log(i == data.Current, AllBackgroundImages, data)
+        if(i == data.Current)
+            CurrentBackgroundImage = AllBackgroundImages[i];
+    };
+
+    if(data.Current == 3){
+        //Set the image in case there is none
+        CurrentBackgroundImage = BackgroundImage;
+    }else if(data.Current == 4){
+        CurrentBackgroundImage = BackgroundImage2;
+    }else if(data.Current == 5){
+        CurrentBackgroundImage = BackgroundImage3;
+    };
 }
 
 const LoadTimerData = () =>{

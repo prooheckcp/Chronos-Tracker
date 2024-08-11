@@ -64,7 +64,17 @@ module.exports = () => {
     ipcMain.handle('request-load-background', async () => {
         try {
             const data = await fs.promises.readFile(backgroundsJson);
-            return JSON.parse(data);
+            let jsonData = JSON.parse(data);
+            console.log("-----", data, jsonData)
+            if (!jsonData.Current){
+                jsonData.Current = 3;
+            }
+
+            if (!jsonData.routes){
+                jsonData.routes = [];
+            }
+
+            return jsonData
         } catch (error) {
             console.error('Error reading backgrounds data:', error);
             return {};

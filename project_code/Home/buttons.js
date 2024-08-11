@@ -82,7 +82,7 @@ const PressedHomeWindow = info =>{
             TappingSound.play();
             CurrentBackgroundImage = BackgroundImage;
             HoldBackgroundsData.Current = 3;
-
+            SaveTimersBackEnd();
     };
 
     //Clicked on default image 2
@@ -97,7 +97,7 @@ const PressedHomeWindow = info =>{
             TappingSound.play();
             CurrentBackgroundImage = BackgroundImage2;
             HoldBackgroundsData.Current = 4;
-
+            SaveTimersBackEnd();
     };
 
     //Clicked on default image 3
@@ -112,7 +112,7 @@ const PressedHomeWindow = info =>{
             TappingSound.play();
             CurrentBackgroundImage = BackgroundImage3;
             HoldBackgroundsData.Current = 5;
-
+            SaveTimersBackEnd();
     };
 
 
@@ -135,7 +135,7 @@ const PressedHomeWindow = info =>{
                         TappingSound.play();
                         CurrentBackgroundImage = AllBackgroundImages[i];
                         HoldBackgroundsData.Current = i;                      
-
+                        SaveTimersBackEnd();
                 };
 
             };
