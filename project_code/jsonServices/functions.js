@@ -25,7 +25,6 @@ const processData = (data) => {
 }
 
 const processBackgrounds = (data) => {
-    console.log(data.length)
     TimersImages = data;
 }
 
@@ -45,7 +44,25 @@ const CreateAnewTimerJSON = (name, description, imagename, imagepath) =>{
 
     //Create the image on the directory
     if(imagename != undefined && imagename != null){
-        ipcRenderer.send( 'request-mainprocess-image', {path: imagepath, name: imagename, lo: LocalObject});
+        ipcRenderer.invoke( 'request-mainprocess-image', {path: imagepath, name: imagename, lo: LocalObject}).then((arg)=>{
+            let LocalObject = arg.lo;
+
+            LocalObject.path = arg.path;
+    
+            let LocalIndex = TimersArray.length;
+    
+            //Send to the array
+            if(LocalObject.path != undefined){
+                TimersImages[LocalIndex] = loadImage(LocalObject.path);
+            }else{
+                TimersImages[LocalIndex] = undefined;
+            };
+    
+            TimersArray[LocalIndex] = LocalObject;
+            
+            //Send the timers data to the back-end
+            SaveTimersBackEnd();
+        })
     }else{
         //Send to the array
         TimersArray.push(LocalObject);   
