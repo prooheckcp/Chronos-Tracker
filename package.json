@@ -7,7 +7,8 @@
   "scripts": {
     "start": "electron .",
     "prod": "electron-packager .",
-    "build": "electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite --icon=assets/iconMac.icns",
+    "build": "sudo electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite --icon=assets/MacIcon.icns",
+    "dmg": "sudo electron-installer-dmg ./ChronosTracker-darwin-x64/ChronosTracker.app ChronosTracker --out=release-builds --overwrite --icon=assets/MacIcon.icns --title=\"ChronosTracker Installer\"",
     "permissions": "sudo chmod -R 755 ChronosTracker-darwin-x64"
   },
   "build": {
@@ -25,11 +26,12 @@
   "author": "prooheckcp",
   "license": "ISC",
   "dependencies": {
-    "electron": "^9.0.4",
     "file-system": "^2.2.2",
     "fs-extra": "^9.0.1"
   },
   "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-installer-dmg": "^5.0.1",
     "electron-packager": "^17.1.2"
   }
 }
