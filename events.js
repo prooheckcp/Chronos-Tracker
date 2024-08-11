@@ -65,12 +65,12 @@ module.exports = () => {
         try {
             const data = await fs.promises.readFile(backgroundsJson);
             let jsonData = JSON.parse(data);
-            console.log("-----", data, jsonData)
-            if (!jsonData.Current){
+   
+            if (!jsonData.Current == null){
                 jsonData.Current = 3;
             }
 
-            if (!jsonData.routes){
+            if (!jsonData.routes == null){
                 jsonData.routes = [];
             }
 

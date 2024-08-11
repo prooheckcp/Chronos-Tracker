@@ -169,13 +169,14 @@ const CreateTheHomeInptus = () =>{
                         
                         AllBackgroundImages[2] = AllBackgroundImages[1];
                         AllBackgroundImages[1] = AllBackgroundImages[0];
-                        AllBackgroundImages[0] = loadImage(file.file.path);
+                        AllBackgroundImages[0] = CurrentBackgroundImage;
                     }else{
                         HoldBackgroundsData.Current = HoldBackgroundsData.routes.length;
                         AllBackgroundImages[HoldBackgroundsData.routes.length] = CurrentBackgroundImage;
                         HoldBackgroundsData.routes[HoldBackgroundsData.routes.length] = arg;
-                        
                     };
+
+                    SaveTimersBackEnd();
                 });
             };
         });
@@ -192,7 +193,6 @@ const CreateTheHomeInptus = () =>{
 };
 
 const RemoveTheHomeInputs = () =>{
-
     //Image input
     if(UploadNewBackgroundImage != undefined){
         UploadNewBackgroundImage.remove();
