@@ -27,12 +27,9 @@ const processData = (data) => {
 const processBackgrounds = (data) => {
     HoldBackgroundsData = data;
 
-    console.log(data);
-
     //Set the images
     for(let i = 0; i < data.routes.length; i++){
         AllBackgroundImages[i] = loadImage(data.routes[i]);
-        console.log(i == data.Current, AllBackgroundImages, data)
         if(i == data.Current)
             CurrentBackgroundImage = AllBackgroundImages[i];
     };

@@ -29,7 +29,7 @@ const LoadAboutButtons = () =>{
         LinkedInButton.image = LinkedInLogo;
         LinkedInButton.transparency = 255;
         LinkedInButton.eventClick1(()=>{
-            window.open('https://www.linkedin.com/in/miguel-soares-564682194/');
+            window.open('https://www.linkedin.com/in/vasco-miguel-veenstra-soares-564682194/');
         });
         LinkedInButton.addHovering(()=>{
             LinkedInButton.x -= 5;

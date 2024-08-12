@@ -96,8 +96,6 @@ module.exports = () => {
         }
     });
 
-    console.log(imagesPath);
-
     // Save image in folder
     ipcMain.handle('save-background-folder', async (_event, arg) => {
         try {

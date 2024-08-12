@@ -160,7 +160,7 @@ const CreateTheHomeInptus = () =>{
 
                 ipcRenderer.invoke('save-background-folder', {path: file.file.path, name: file.file.name}).then((arg)=>{
                     //Add the picture info
-                    if(HoldBackgroundsData.routes.length >= 3){
+                    if(HoldBackgroundsData?.routes.length >= 3){
                         HoldBackgroundsData.Current = 0;
 
                         HoldBackgroundsData.routes[2] = HoldBackgroundsData.routes[1];
