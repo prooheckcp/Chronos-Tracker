@@ -9,7 +9,7 @@
     "prod": "electron-packager .",
     "build": "sudo electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite --icon=assets/MacIcon.icns",
     "buildSillicon": "sudo electron-packager . ChronosTracker --platform=darwin --arch=arm64 --out=./ --overwrite --icon=assets/MacIcon.icns",
-    "dmg": "sudo electron-installer-dmg ./ChronosTracker-darwin-x64/ChronosTracker.app ChronosTracker --out=release-builds --overwrite --icon=assets/MacIcon.icns --title=\"ChronosTracker Installer\"",
+    "dmg": "sudo electron-installer-dmg ./ChronosTracker-darwin-arm64/ChronosTracker.app ChronosTracker --out=release-builds --overwrite --icon=assets/MacIcon.icns --title=\"ChronosTracker Installer\"",
     "permissions": "sudo chmod -R 755 ChronosTracker-darwin-x64"
   },
   "build": {
