@@ -9,8 +9,10 @@
     "prod": "electron-packager .",
     "build": "sudo electron-packager . ChronosTracker --platform=darwin --arch=x64 --out=./ --overwrite --icon=assets/MacIcon.icns",
     "buildSillicon": "sudo electron-packager . ChronosTracker --platform=darwin --arch=arm64 --out=./ --overwrite --icon=assets/MacIcon.icns",
+    "buildWindows": "electron-packager . ChronosTracker --platform=win32 --arch=x64 --out=./ --overwrite --icon=assets/Windows.ico",
     "dmg": "sudo electron-installer-dmg ./ChronosTracker-darwin-arm64/ChronosTracker.app ChronosTracker --out=release-builds --overwrite --icon=assets/MacIcon.icns --title=\"ChronosTracker Installer\"",
-    "permissions": "sudo chmod -R 755 ChronosTracker-darwin-x64"
+    "permissions": "sudo chmod -R 755 ChronosTracker-darwin-x64",
+    "buildWindowsExe": "electron-builder --win"
   },
   "build": {
     "appId": "com.example.yourapp",
@@ -22,6 +24,16 @@
     },
     "linux": {
       "target": "AppImage"
+    },
+    "nsis": {
+      "oneClick": false, 
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/Windows.ico",
+      "uninstallerIcon": "assets/Windows.ico",
+      "uninstallDisplayName": "Chronos Tracker",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Chronos Tracker"
     }
   },
   "author": "prooheckcp",
@@ -32,6 +44,7 @@
   },
   "devDependencies": {
     "electron": "^31.3.1",
+    "electron-builder": "^25.0.5",
     "electron-installer-dmg": "^5.0.1",
     "electron-packager": "^17.1.2"
   }
