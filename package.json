@@ -15,16 +15,29 @@
     "buildWindowsExe": "electron-builder --win"
   },
   "build": {
-    "appId": "com.example.yourapp",
+    "appId": "com.prooheckcp.chronostracker",
+    "productName": "Chronos Tracker",
     "mac": {
       "target": "dmg"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "assets/Windows.ico"
     },
     "linux": {
       "target": "AppImage"
     },
+    "files": [
+      "assets/**/*",
+      "main.js",
+      "package.json",
+      "img/**/*",
+      "Databases/**/*",
+      "project_code/**/*",
+      "p5/**/*",
+      "./**/*"
+    ],
+    "asar": false,
     "nsis": {
       "oneClick": false, 
       "allowToChangeInstallationDirectory": true,
