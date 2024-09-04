@@ -1,4 +1,4 @@
-const { ipcMain, app } = require('electron');
+const { ipcMain, app, globalShortcut  } = require('electron');
 const fs = require('fs');
 const fse = require('fs-extra');
 const path = require('path');
@@ -13,7 +13,7 @@ module.exports = () => {
     // Ensure the necessary files and directories exist
     try {
         if (!fs.existsSync(timersPath)) {
-            fs.writeFileSync(timersPath, JSON.stringify({}));
+            fs.writeFileSync(timersPath, JSON.stringify([]));
         }
 
         if (!fs.existsSync(imagesPath)) {
@@ -39,7 +39,7 @@ module.exports = () => {
     });
 
     // Save Timer Data
-    ipcMain.handle('request-mainprocess-save', async (event, arg) => {
+    ipcMain.handle('request-mainprocess-save', async (_event, arg) => {
         try {
             await fs.promises.writeFile(timersPath, JSON.stringify(arg));
             return 'Data has been saved';
@@ -50,7 +50,7 @@ module.exports = () => {
     });
 
     // Create image path event
-    ipcMain.handle('request-mainprocess-image', async (event, arg) => {
+    ipcMain.handle('request-mainprocess-image', async (_event, arg) => {
         try {
             await fse.copy(arg.path, path.join(imagesPath, arg.name));
             return { path: path.join(imagesPath, arg.name), lo: arg.lo };
@@ -66,11 +66,11 @@ module.exports = () => {
             const data = await fs.promises.readFile(backgroundsJson);
             let jsonData = JSON.parse(data);
    
-            if (!jsonData.Current == null){
+            if (jsonData.Current == null){
                 jsonData.Current = 3;
             }
 
-            if (!jsonData.routes == null){
+            if (jsonData.routes == null){
                 jsonData.routes = [];
             }
 

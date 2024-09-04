@@ -61,10 +61,7 @@ const CreateAnewTimerJSON = (name, description, imagename, imagepath) =>{
     //Create the image on the directory
     if(imagename != undefined && imagename != null){
         ipcRenderer.invoke( 'request-mainprocess-image', {path: imagepath, name: imagename, lo: LocalObject}).then((arg)=>{
-            let LocalObject = arg.lo;
-
             LocalObject.path = arg.path;
-    
             let LocalIndex = TimersArray.length;
     
             //Send to the array

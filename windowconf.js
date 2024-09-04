@@ -22,10 +22,15 @@ module.exports = ()=>{
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,
+            devTools: true
         }
     });
     
     win.setMenu(null);
+
+    globalShortcut.register('Ctrl+Shift+I', () => {
+        win.webContents.openDevTools();
+    });
 
     //Restart the front end
 	globalShortcut.register('CommandOrControl+R', function() {
